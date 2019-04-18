@@ -4,6 +4,7 @@ import './App.css';
 
 class App extends Component {
   render() {
+    [1,2,3].map(n=>n)
     return (
       <div className="App">
         <header className="App-header">
