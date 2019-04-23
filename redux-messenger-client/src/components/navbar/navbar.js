@@ -9,7 +9,7 @@ const Navbar = () => {
           <Link to="/">Logo</Link>
         </li>
       </ul>
-      <a className="navbar__li btn btn__medium" href=" " onClick={props.handleClickLogin}>Login</a>
+      <a className="navbar__li btn btn__medium" href=" ">Login</a>
     </div>
   )
 }
