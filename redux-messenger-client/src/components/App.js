@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import Navbar from './navbar/Navbar.js'
-import Home from './home/Home.js'
-import Signup from './signup/Signup.js'
-import '../sass/main.scss'
-import { connect } from 'react-redux'
-import Adapter from '../adapters/adapter.js';
+import Navbar from './navbar/Navbar.js';
+import Signup from './signup/Signup.js';
+import Home from './home/Home';
+import '../sass/main.scss';
+import { connect } from 'react-redux';
+import Adapter from '../adapters/adapter';
 
 class App extends Component {
   state = {
@@ -33,8 +33,7 @@ class App extends Component {
           {/* Home Component */}
           <Route 
             exact path="/"
-            render={props =>
-              <Home
+            render={props => <Home
                 password = {this.state.password}
                 />
               }
@@ -42,8 +41,7 @@ class App extends Component {
           {/* Signup Component */}
           <Route 
             path="/signup"
-            render={props =>
-              <Signup
+            render={props => <Signup
                 password = {this.state.password}
                 handleClickPassword={this.handleClickPassword}
               />

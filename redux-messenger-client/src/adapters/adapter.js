@@ -9,4 +9,4 @@ class Adapter {
   
 }
 
-export default Adapter
+export default Adapter;
