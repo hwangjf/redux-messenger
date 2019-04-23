@@ -1,3 +1,10 @@
+import {
+  SET_CURRENT_USER,
+  AUTHENTICATING_USER,
+  AUTHENTICATED_USER,
+  FAILED_LOGIN
+} from '../types'
+
 const initialState = {
   user: null,
   loggedIn: false,
@@ -7,6 +14,7 @@ const initialState = {
 }
 
 const usersReducer = (state = initialState, action) => {
+
   switch (action.payload) {
     case SET_CURRENT_USER:
       return {
