@@ -19,6 +19,10 @@ class App extends Component {
     }
   }
 
+  handleClickPassword = () => {
+    this.setState({ password: !this.state.password})
+  }
+
   render() {
     return (
       <>
@@ -40,6 +44,7 @@ class App extends Component {
             render={props =>
               <Signup
                 password = {this.state.password}
+                handleClickPassword={this.handleClickPassword}
               />
             }
           />
