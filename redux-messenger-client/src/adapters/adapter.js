@@ -1,4 +1,4 @@
-export default class Adapter {
+class Adapter {
   static loggedIn = () => {
     return !!Adapter.getToken
   }
@@ -8,3 +8,5 @@ export default class Adapter {
   }
   
 }
+
+export default Adapter

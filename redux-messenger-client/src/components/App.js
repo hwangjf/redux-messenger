@@ -11,11 +11,12 @@ class App extends Component {
 
   componentDidMount() {
     if (Adapter.loggedIn()) {
-      
+
     }
   }
 
   render() {
+    console.log(this.props)
     return (
       <>
         <Navbar />

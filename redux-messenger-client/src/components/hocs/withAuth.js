@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import fetchCurrentUser from './../actions'
+import fetchCurrentUser from './../actions/users'
 import Adapter from '../../adapters/adapter';
 import { Redirect } from 'react-router-dom'
 
