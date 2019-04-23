@@ -8,6 +8,10 @@ import { connect } from 'react-redux'
 import Adapter from '../adapters/adapter.js';
 
 class App extends Component {
+  state = {
+    login: false,
+    password: false
+  }
 
   componentDidMount() {
     if (Adapter.loggedIn()) {
@@ -15,14 +19,36 @@ class App extends Component {
     }
   }
 
+  handleClickPassword = () => {
+    this.setState({ password: !this.state.password})
+  }
+
   render() {
     console.log(this.props)
     return (
       <>
+        {/* Navbar Component */}
         <Navbar />
         <div>
-          <Route exact path="/" component={ Home } />
-          <Route path="/signup" component={ Signup } />
+          {/* Home Component */}
+          <Route 
+            exact path="/"
+            render={props =>
+              <Home
+                password = {this.state.password}
+                />
+              }
+              />
+          {/* Signup Component */}
+          <Route 
+            path="/signup"
+            render={props =>
+              <Signup
+                password = {this.state.password}
+                handleClickPassword={this.handleClickPassword}
+              />
+            }
+          />
         </div>
       </>
     );
@@ -34,3 +60,5 @@ class App extends Component {
 // }
 
 export default connect(null)(App)
+
+

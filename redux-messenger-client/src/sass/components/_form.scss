@@ -1,0 +1,20 @@
+.form {
+    border-radius: 3px;
+    background-color: rgba($color-white, 0.9);
+    box-shadow: $boxshadow;
+}
+
+.input {
+    -webkit-appearance: none;
+    border-radius: 3px;
+    border: 0.5px rgba(grey, .3) solid;
+    padding: .75rem 2rem .75rem 1rem;;
+    display: block;
+    font-family: inherit;
+    font-size: inherit;
+    
+    &:focus {
+        outline: none;
+        border: 0.5px $color-primary solid;
+    }
+}
