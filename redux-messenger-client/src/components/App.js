@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import '../sass/main.scss'
+import { connect } from 'react-redux'
 
 class App extends Component {
+
+  componentDidMount() {
+    
+  }
+
   render() {
     return (
       <div className="App">
@@ -11,4 +17,8 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps() {
+
+}
+
+export default connect()(App)

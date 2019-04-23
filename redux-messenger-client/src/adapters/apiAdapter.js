@@ -8,7 +8,7 @@ class apiAdapter {
 
   }
 
-  static getUsers = () => {
+  static getUser = () => {
 
   }
 }
