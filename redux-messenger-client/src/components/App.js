@@ -7,15 +7,22 @@ import '../sass/main.scss'
 import { connect } from 'react-redux'
 
 class App extends Component {
+  state = {
+    signup: false
+  }
 
   componentDidMount() {
+
+  }
+
+  handleClickLogin = () => {
 
   }
 
   render() {
     return (
       <>
-        <Navbar />
+        <Navbar handleClickLogin={this.handleClickLogin}/>
         <div>
           <Route exact path="/" component={ Home } />
           <Route path="/signup" component={ Signup } />
@@ -29,4 +36,5 @@ class App extends Component {
 //
 // }
 
-export default connect(null)(App)
+// export default connect(null)(App)
+export default App;
