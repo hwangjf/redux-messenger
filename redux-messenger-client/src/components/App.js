@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Navbar from './navbar/Navbar.js'
 import Home from './home/Home.js'
 import Signup from './signup/Signup.js'
@@ -14,13 +14,13 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
+      <>
         <Navbar />
-
-        <Route exact path="/" component={ Home } />
-        <Route path="/signup" component={ Signup } />
-
-      </Router>
+        <div>
+          <Route exact path="/" component={ Home } />
+          <Route path="/signup" component={ Signup } />
+        </div>
+      </>
     );
   }
 }
