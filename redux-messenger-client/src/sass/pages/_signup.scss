@@ -1,0 +1,37 @@
+.signup {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    &__form {
+        padding: 4rem;
+        width: 40%;
+        position: relative;
+        margin-top: 10rem;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+    }
+
+    &__input {
+        font-size: 1.25rem;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+}
+
+.signup::after {
+    content: "";
+    background-image: url("/images/signup-background.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+}

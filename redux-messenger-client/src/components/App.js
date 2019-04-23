@@ -7,6 +7,10 @@ import '../sass/main.scss'
 import { connect } from 'react-redux'
 
 class App extends Component {
+  state = {
+    login: false,
+    password: false
+  }
 
   componentDidMount() {
 
@@ -15,10 +19,27 @@ class App extends Component {
   render() {
     return (
       <>
+        {/* Navbar Component */}
         <Navbar />
         <div>
-          <Route exact path="/" component={ Home } />
-          <Route path="/signup" component={ Signup } />
+          {/* Home Component */}
+          <Route 
+            exact path="/"
+            render={props =>
+              <Home
+                password = {this.state.password}
+                />
+              }
+              />
+          {/* Signup Component */}
+          <Route 
+            path="/signup"
+            render={props =>
+              <Signup
+                password = {this.state.password}
+              />
+            }
+          />
         </div>
       </>
     );
@@ -30,3 +51,5 @@ class App extends Component {
 // }
 
 export default connect(null)(App)
+
+
