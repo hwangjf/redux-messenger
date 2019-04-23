@@ -1,1 +1,40 @@
-// components to use throughout app
+.btn {
+  background-color: $color-primary;
+  color: $color-white;
+  border-radius: 3px;
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+
+  &__small {
+    padding: .5rem 1rem;
+  }
+
+  &__medium {
+    padding: .5rem 2rem;
+  }
+
+  &__large {
+    padding: .75rem 2rem;
+    font-size: 1.25rem;
+  }
+
+  &:visited,
+  &:focus {
+    text-decoration: none;
+    outline: none;
+  }
+
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-0.1rem);
+    box-shadow: $button-boxshadow-hover;
+  }
+
+  &:active {
+    outline: none;
+    transform: translateY(-0.05rem);
+    box-shadow: $button-boxshadow-active;
+  }
+
+}
