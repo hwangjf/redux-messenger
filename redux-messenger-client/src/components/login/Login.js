@@ -1,15 +1,12 @@
 import React from 'react'
 
-const Signup = (props) => {
+const Login = (props) => {
   return (
-    <div className="signup">
-      {props.login
-      ?
-      null
-      :
-      <form className="form signup__form">
+    <div className="login__modal" onClick={(event)=>props.handleClickClose(event)}>
+      <form className="form login__form">
+        <div className="close" onClick={(event)=>props.handleClickClose(event)}>&#215;</div>
         <input
-          className="input signup__input"
+          className="input login__input"
           type="text"
           id="name"
           placeholder="Enter your name"
@@ -19,14 +16,14 @@ const Signup = (props) => {
         </input>
         {props.password
         ?
-          <img className="signup__image--aria-eye" src="images/aria-eye-show.png" alt="aria-eye" onClick={()=>{props.handleClickPassword()}}/>
+          <img className="login__image--aria-eye" src="images/aria-eye-show.png" alt="aria-eye" onClick={()=>{props.handleClickPassword()}}/>
         :
-          <img className="signup__image--aria-eye" src="images/aria-eye-hide.png" alt="aria-eye" onClick={()=>{props.handleClickPassword()}}/>
+          <img className="login__image--aria-eye" src="images/aria-eye-hide.png" alt="aria-eye" onClick={()=>{props.handleClickPassword()}}/>
         }
         {props.password
         ?
           <input
-            className="input signup__input"
+            className="input login__input"
             type="text"
             id="password"
             placeholder="Enter your password"
@@ -36,7 +33,7 @@ const Signup = (props) => {
           </input>
         :
           <input
-            className="input signup__input"
+            className="input login__input"
             type="password"
             id="password"
             placeholder="Enter your password"
@@ -45,10 +42,9 @@ const Signup = (props) => {
             required>
           </input>
         }
-        <button className="btn btn__medium btn__medium--right">Signup</button>
-      </form>}
-    </div>
+        <button className="btn btn__medium btn__medium--right">Login</button>
+      </form>    </div>
   )
 }
 
-export default Signup
+export default Login

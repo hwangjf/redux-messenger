@@ -2,14 +2,11 @@
 
 @import "base/base";
 @import "base/animations";
-@import "base/typography";
-@import "base/utilities";
 
 @import "components/button";
 @import "components/form";
 @import "components/navbar";
 
-@import "layout/header";
-
 @import "pages/home";
+@import "pages/login";
 @import "pages/signup";
