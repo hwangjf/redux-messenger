@@ -18,3 +18,10 @@
         border: 0.5px $color-primary solid;
     }
 }
+
+@media only screen and (max-width: 600px) {
+    .form {
+        background-color: rgba($color-white, 0);
+       box-shadow: none;
+    }
+}
