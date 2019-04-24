@@ -1,9 +1,10 @@
 import Adapter from "./adapter";
 
 const baseUrl = 'http://localhost:4000/api/v1'
+// TODO: move baseUrl to env.process.
 
 class apiAdapter {
-  constructor(baseUrl, headers = false) {
+  constructor(baseUrl) {
     this.baseUrl = baseUrl
     this.headers = {
       "Content-type": "application/json",
@@ -11,38 +12,42 @@ class apiAdapter {
     }
   }
   
-  static addAuth = () => {
+  static addAuthHeaders = () => {
     this.headers["Authorization"] = `Bearer ${Adapter.getToken()}`
   }
 
-  static removeAuth = () => {
+  static removeAuthHeaders = () => {
     this.headers["Authorization"] = null
   }
 
-  static get = (endpoint, headers) => {
+  static get = (endpoint) => {
     return fetch(`${baseUrl}/${endpoint}`, {
-      headers: this.headers
+      this.headers
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        } else {
-          throw res
-        }
-      })
-
+      .then(res => res.json())
   }
 
   static post = (endpoint, body) => {
     return fetch(`${baseUrl}/${endpoint}`, {
-      headers: this.headers,
+      method: 'POST',
+      this.headers,
       body: JSON.stringify(body)
     })
       .then(res => res.json())
   }
 
-  static getUser = () => {
+  static patch = (endpoint, body) => {
+    return fetch(`${baseUrl}/${endpoint}`, {
+      method: 'PATCH',
+      this.headers,
+      body: JSON.stringify(body)
+    })
+      .then(res => res.json())
+  }
 
+  static login = (userInfo) => {
+    return this.post('/login', {user: userInfo})
+      .then(res => res.json())
   }
 }
 
