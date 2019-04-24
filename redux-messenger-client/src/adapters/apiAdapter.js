@@ -20,9 +20,9 @@ class apiAdapter {
     this.headers["Authorization"] = null
   }
 
-  static get = (endpoint, headers) => {
+  static get = (endpoint) => {
     return fetch(`${baseUrl}/${endpoint}`, {
-      headers: this.headers
+      this.headers
     })
       .then(res => res.json())
   }
@@ -30,7 +30,7 @@ class apiAdapter {
   static post = (endpoint, body) => {
     return fetch(`${baseUrl}/${endpoint}`, {
       method: 'POST',
-      headers: this.headers,
+      this.headers,
       body: JSON.stringify(body)
     })
       .then(res => res.json())
@@ -39,7 +39,7 @@ class apiAdapter {
   static patch = (endpoint, body) => {
     return fetch(`${baseUrl}/${endpoint}`, {
       method: 'PATCH',
-      headers: this.headers,
+      this.headers,
       body: JSON.stringify(body)
     })
       .then(res => res.json())
