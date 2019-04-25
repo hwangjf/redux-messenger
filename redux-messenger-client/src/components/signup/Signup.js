@@ -8,6 +8,7 @@ const Signup = (props) => {
       null
       :
       <form className="form signup__form">
+        <div className="header signup__header">Signup</div>
         <input
           className="input signup__input"
           type="text"
@@ -45,7 +46,7 @@ const Signup = (props) => {
             required>
           </input>
         }
-        <button className="btn btn__medium btn__medium--right">Signup</button>
+        <button className="btn btn__large">Signup</button>
       </form>}
     </div>
   )

@@ -20,14 +20,18 @@
 }
 
 .login {
-
+  
     &__form {
         padding: 4rem;
         width: 40rem;
         position: relative;
-        margin-top: 15.5rem;
+        margin-top: 13.5rem;
         left: 50%;
         transform: translateX(-50%);
+    }
+
+    &__header {
+      margin-bottom: 2rem;
     }
 
     &__input {

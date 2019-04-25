@@ -8,9 +8,13 @@
         padding: 4rem;
         width: 40rem;
         position: relative;
-        margin-top: 12rem;
+        margin-top: 10rem;
         left: 50%;
         transform: translateX(-50%);
+    }
+
+    &__header {
+      margin-bottom: 2rem;
     }
 
     &__input {

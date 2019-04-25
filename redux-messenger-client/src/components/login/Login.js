@@ -4,6 +4,7 @@ const Login = (props) => {
   return (
     <div className="login__modal" onClick={(event)=>props.handleClickClose(event)}>
       <form className="form login__form">
+        <div className="header login__header">Login</div>
         <div className="close" onClick={(event)=>props.handleClickClose(event)}>&#215;</div>
         <input
           className="input login__input"
@@ -42,7 +43,7 @@ const Login = (props) => {
             required>
           </input>
         }
-        <button className="btn btn__medium btn__medium--right">Login</button>
+        <button className="btn btn__large">Login</button>
       </form>    </div>
   )
 }
