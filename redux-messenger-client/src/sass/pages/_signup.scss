@@ -1,0 +1,67 @@
+.signup {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    &__form {
+        padding: 4rem;
+        width: 40rem;
+        position: relative;
+        margin-top: 12rem;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    &__input {
+        font-size: 1.25rem;
+        width: 100%;
+        margin-bottom: 3rem;
+        font-family: inherit;
+    }
+
+    &__label {
+        font-size: 1.25rem;
+        color: grey;
+        position: relative;
+        top: 2.2rem;
+        left: 1rem;
+        white-space: nowrap;
+    }
+
+    &__image--aria-eye {
+        position: absolute;
+        width: 1rem;
+        height: 1rem;
+        right: 4.5rem;
+        margin-top: 1rem;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.signup::after {
+    content: "";
+    background-image: url("/images/signup-background.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.6;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+// MEDIA QUERIES //
+@media only screen and (max-width: 600px) {
+    .signup {
+        &__form {
+            width: 100%;
+        }
+    }
+}

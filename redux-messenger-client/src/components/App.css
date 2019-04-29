@@ -1,4 +1,101 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+html {
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif; }
+
 body {
-  font: arial;
-  background-color: blue;
-}
+  box-sizing: border-box; }
+
+.btn {
+  background-color: #505BBB;
+  color: white;
+  border-radius: 3px;
+  border: none;
+  text-decoration: none;
+  display: inline-block; }
+  .btn__small {
+    padding: .5rem 1rem; }
+  .btn__medium {
+    padding: .5rem 2rem; }
+  .btn__large {
+    padding: .75rem 2rem;
+    font-size: 1.25rem; }
+  .btn:visited, .btn:focus {
+    text-decoration: none;
+    outline: none; }
+  .btn:hover {
+    cursor: pointer;
+    transform: translateY(-0.1rem);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.6); }
+  .btn:active {
+    outline: none;
+    transform: translateY(-0.05rem);
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.6); }
+
+.navbar {
+  height: 3.5rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  padding: 0rem 2rem;
+  align-items: center;
+  -webkit-box-shadow: 0 8px 0.5rem -0.5rem rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 8px 0.5rem -0.5rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 0.5rem -0.5rem rgba(0, 0, 0, 0.2); }
+  .navbar__ul {
+    list-style: none; }
+  .navbar__li a {
+    text-decoration: none;
+    color: black; }
+    .navbar__li a:active, .navbar__li a:visited, .navbar__li a:focus {
+      text-decoration: none;
+      outline: none; }
+    .navbar__li a:hover {
+      cursor: pointer; }
+  .navbar__li:last-child {
+    margin-left: auto; }
+
+.home {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0; }
+  .home__container {
+    position: relative;
+    text-align: center;
+    padding-top: 15rem; }
+  .home__header {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    width: 50%;
+    margin: 0 auto 1rem auto;
+    color: #505BBB;
+    letter-spacing: .1rem;
+    font-weight: bold; }
+
+.home::after {
+  content: "";
+  background-image: url("/images/homepage-background.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.6;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1; }
+
+@media only screen and (max-width: 1024px) {
+  .home__header {
+    width: 70%; } }
+
+@media only screen and (max-width: 768px) {
+  .home__header {
+    width: 90%; } }

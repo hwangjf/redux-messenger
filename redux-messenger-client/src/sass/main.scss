@@ -1,4 +1,12 @@
-body {
-  font: arial;
-  background-color: blue;
-}
+@import "abstracts/variables";
+
+@import "base/base";
+@import "base/animations";
+
+@import "components/button";
+@import "components/form";
+@import "components/navbar";
+
+@import "pages/home";
+@import "pages/login";
+@import "pages/signup";
