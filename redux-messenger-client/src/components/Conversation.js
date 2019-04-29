@@ -18,3 +18,5 @@ class Conversation extends Component {
     )
   }
 }
+
+export default connect()(Conversation)
