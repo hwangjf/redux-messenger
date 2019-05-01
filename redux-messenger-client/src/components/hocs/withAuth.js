@@ -5,7 +5,7 @@ import Adapter from '../../adapters/adapter';
 import { Redirect } from 'react-router-dom'
 
 const withAuth =  (WrappedComponent) => {
-  class extends AuthorizedComponent {
+  class AuthorizedComponent extends Component {
     componentDidMount() {
       if (Adapter.loggedIn && !this.props.loggedIn) {
         // login
@@ -15,18 +15,21 @@ const withAuth =  (WrappedComponent) => {
     render() {
       if (Adapter.loggedIn && this.props.loggedIn) {
         // has token and successfully logged in
-        <WrappedComponent />
+        return <WrappedComponent />
       } else if (Adapter.loggedIn && (this.props.authenticatingUser || !this.props.loggedIn)) {
         // has token and attempting log in
         return <div>Loading</div>
       } else {
         // not logged in can redirect or do something else
-        <Redirect to="/signup" />
+        return <Redirect to="/signup" />
       }
     }
   }
 
-  const mapDispatchToProps = { fetchCurrentUser }
+  const mapStateToProps = () => {
+    return null
+  }
+  // const mapDispatchToProps = { fetchCurrentUser }
 
   return connect(mapStateToProps, { fetchCurrentUser })(AuthorizedComponent)
 } 

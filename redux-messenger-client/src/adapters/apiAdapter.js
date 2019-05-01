@@ -1,9 +1,9 @@
-import Adapter from "./adapter";
+import Adapter from "./Adapter"
 
 const baseUrl = 'http://localhost:4000/api/v1'
 // TODO: move baseUrl to env.process.
 
-class apiAdapter {
+class ApiAdapter {
   constructor(baseUrl) {
     this.baseUrl = baseUrl
     this.headers = {
@@ -11,50 +11,47 @@ class apiAdapter {
       "Accepts": "application/json"
     }
   }
-  
-  static addAuthHeaders = () => {
+
+  addAuthHeaders = () => {
     this.headers["Authorization"] = `Bearer ${Adapter.getToken()}`
   }
 
-  static removeAuthHeaders = () => {
-    this.headers["Authorization"] = null
+  removeAuthHeaders = () => {
+    delete this.headers["Authorization"]
   }
 
-  static get = (endpoint) => {
-    return fetch(`${baseUrl}/${endpoint}`, {
-      this.headers
+  get = (endpoint) => {
+    return fetch(`${baseUrl}${endpoint}`, {
+      headers: this.headers
     })
       .then(res => res.json())
   }
 
-  static post = (endpoint, body) => {
-    return fetch(`${baseUrl}/${endpoint}`, {
+  post = (endpoint, body) => {
+    return fetch(`${baseUrl}${endpoint}`, {
       method: 'POST',
-      this.headers,
+      headers: this.headers,
       body: JSON.stringify(body)
     })
       .then(res => res.json())
   }
 
-  static patch = (endpoint, body) => {
-    return fetch(`${baseUrl}/${endpoint}`, {
+  patch = (endpoint, body) => {
+    return fetch(`${baseUrl}${endpoint}`, {
       method: 'PATCH',
-      this.headers,
+      headers: this.headers,
       body: JSON.stringify(body)
     })
-      .then(res => res.json())
-  }
-
-  static login = (userInfo) => {
-    return this.post('/login', {user: userInfo})
       .then(res => res.json())
   }
 }
 
-const apiAdapter = new apiAdapter(baseUrl)
+// const ApiAdapter = new ApiAdapter(baseUrl)
 
-// apiAdapter.get('/login')
+// ApiAdapter.get('/login')
 //   .then(data => {
 //     // {user: whatever}
 //   })
-export default apiAdapter
+// export const hello = new ApiAdapter(baseUrl)
+
+export default ApiAdapter
