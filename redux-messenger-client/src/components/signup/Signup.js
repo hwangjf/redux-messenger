@@ -18,13 +18,13 @@ const Signup = (props) => {
           onBlur={(event) => event.target.placeholder = "Enter your name"}
           required>
         </input>
-        {props.password
+        {props.showPassword
         ?
           <img className="signup__image--aria-eye" src="images/aria-eye-show.png" alt="aria-eye" onClick={()=>{props.handleClickPassword()}}/>
         :
           <img className="signup__image--aria-eye" src="images/aria-eye-hide.png" alt="aria-eye" onClick={()=>{props.handleClickPassword()}}/>
         }
-        {props.password
+        {props.showPassword
         ?
           <input
             className="input signup__input"

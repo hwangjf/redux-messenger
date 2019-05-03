@@ -1,0 +1,104 @@
+.profile-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.stripes {
+  border: 1px solid $color-primary;
+  z-index: -1;
+  box-sizing: border-box;
+  transform: skewY(-12deg);
+}
+
+.stripe {
+  &__1 {
+    margin-top: 18rem;
+    border: 2px solid $color-primary;
+  }
+
+  &__2 {
+    margin-top: 3rem;
+    border: 5px solid $color-primary;
+  }
+
+  &__3 {
+    margin-top: 10rem;
+  }
+}
+
+.profile {
+  border: 1px darkgrey solid;
+  width: 75%;
+  height: 35rem;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 8rem;
+  border-radius: 5px;
+  padding: 8rem 6rem 6rem;
+  background-color: white;
+
+  &__image {
+    border: 10px white solid;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    width: 12rem;
+    height: 12rem;
+    top: -4rem;
+    background-color: lightgrey;
+  }
+
+  &__edit {
+    color: grey;
+    position: absolute;
+    right: 3rem;
+    top: 3rem;
+
+    &:hover {
+      cursor: pointer;
+      font-weight: bold;
+    }
+  }
+
+  &__info {
+    border-bottom: 1px grey solid;
+    padding: 2rem 0rem;
+    display: flex;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__header {
+    color: grey;
+    width: 6rem;
+    margin-right: 15%;
+    text-transform: uppercase;
+  }
+
+  &__content {
+    padding: .3rem .5rem;
+  }
+
+  &__input {
+    -webkit-appearance: none;
+    border-radius: 3px;
+    border: 0.5px rgba(grey, .3) solid;
+    padding: .25rem .5rem;
+    display: block;
+    font-family: inherit;
+    font-size: 1rem;
+
+    &:focus {
+        outline: none;
+        border: 0.5px $color-primary solid;
+    }
+  }
+}

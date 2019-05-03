@@ -15,6 +15,7 @@
   &__li a{
     text-decoration: none;
     color: black;
+    margin-right: 1.5rem;
 
     &:active,
     &:visited,
@@ -31,5 +32,60 @@
   &__li:last-child {
     margin-left: auto;
   }
+}
 
+.loggedin-navbar {
+  margin-right: -2rem;
+  width: 100%;
+
+  &__ul {
+    list-style: none;
+    display: flex;
+  }
+
+  &__li {
+    width: 10rem;
+
+    &:first-child {
+      margin-left: auto;
+    }
+
+    &:visited,
+    &:focus {
+      text-decoration: none;
+      outline: none;
+    }
+
+    &:hover {
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      cursor: pointer;
+      background-color: rgba($color-primary, .5);
+    }
+
+    &:active {
+      box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  &__li a {
+    text-decoration: none;
+    color: black;
+    display: block;
+    height: 3.5rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+// MEDIA QUERIES //
+@media only screen and (max-width: 650px) {
+
+  .loggedin-navbar {
+    &__li {
+      width: 25%;
+    }
+  }
 }

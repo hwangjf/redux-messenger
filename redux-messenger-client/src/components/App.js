@@ -4,6 +4,7 @@ import Navbar from './navbar/Navbar.js'
 import Home from './home/Home.js'
 import Login from './login/Login.js'
 import Signup from './signup/Signup.js'
+import Profile from './profile/Profile.js'
 import '../sass/main.scss'
 import { connect } from 'react-redux'
 import Adapter from '../adapters/adapter.js';
@@ -11,13 +12,17 @@ import Adapter from '../adapters/adapter.js';
 class App extends Component {
   state = {
     login: false,
-    password: false
+    showPassword: false,
+    user: 1,
+    editProfile: false
+    // name: false,
+    // birthday: false,
+    // gender: false,
+    // password: false
   }
-
 
   componentDidMount() {
     if (Adapter.loggedIn()) {
-
     }
   }
 
@@ -34,21 +39,24 @@ class App extends Component {
   }
 
   handleClickPassword = () => {
-    this.setState({ password : !this.state.password })
+    this.setState({ showPassword : !this.state.showPassword })
+  }
+
+  handleClickEditProfile = () => {
+    this.setState({ editProfile : !this.state.editProfile })
   }
 
   render() {
-    console.log(this.props)
     return (
       <React.Fragment>
         <Navbar
           handleClickLogin={this.handleClickLogin}
+          user={this.state.user}
         />
         <Route
           exact path="/"
           render={props =>
             <Home
-              password={this.state.password}
             />
           }
         />
@@ -56,7 +64,7 @@ class App extends Component {
         ?
         <Login
           handleClickClose={this.handleClickClose}
-          password={this.state.password}
+          showPassword={this.state.showPassword}
           handleClickPassword={this.handleClickPassword}
         />
         :
@@ -67,8 +75,17 @@ class App extends Component {
           render={props =>
             <Signup
               login={this.state.login}
-              password={this.state.password}
+              showPassword={this.state.showPassword}
               handleClickPassword={this.handleClickPassword}
+            />
+          }
+        />
+        <Route
+          path="/profile"
+          render={props =>
+            <Profile
+              editProfile={this.state.editProfile}
+              handleClickEditProfile={this.handleClickEditProfile}
             />
           }
         />
