@@ -7,9 +7,16 @@ const Profile = (props) => {
         <div className="stripes stripe__1"></div>
         <div className="stripes stripe__2"></div>
         <div className="stripes stripe__3"></div>
+        <div className="stripes stripe__4"></div>
       </div>
       <div className="profile">
-        <div className="profile__image"></div>
+        <div className="profile__image--container">
+          <img className="profile__image--image" src="https://mauriziolacava.com/wp-content/uploads/2018/09/cute-puppy-pictures-science-why-adorable-puppies.jpeg" alt="picture" />
+          <div className="profile__image--default"></div>
+          <div className="profile__camera--container">
+            <img className="profile__camera" src="images/camera.png" alt="camera" />
+          </div>
+        </div>
         {props.editProfile ? <div className="profile__edit" onClick={props.handleClickEditProfile}>done</div> : <div className="profile__edit" onClick={props.handleClickEditProfile}>edit</div>}
         <div className="profile__info">
           <div className="profile__header">name</div>
