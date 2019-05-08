@@ -4,14 +4,14 @@ const Profile = (props) => {
   return (
     <React.Fragment>
       <div className="profile-background">
-        <div className="stripes stripe__1"></div>
-        <div className="stripes stripe__2"></div>
-        <div className="stripes stripe__3"></div>
-        <div className="stripes stripe__4"></div>
+        <div className="stripe__1"></div>
+        <div className="stripe__2"></div>
+        <div className="stripe__3"></div>
+        <div className="stripe__4"></div>
       </div>
       <div className="profile">
         <div className="profile__image--container">
-          <img className="profile__image--image" src="https://mauriziolacava.com/wp-content/uploads/2018/09/cute-puppy-pictures-science-why-adorable-puppies.jpeg" alt="picture" />
+          <img className="profile__image--image" src="https://i.pinimg.com/originals/ae/c4/53/aec453161b2f33ffc6219d8a758307a9.jpg" alt="profile" />
           <div className="profile__image--default"></div>
           <div className="profile__camera--container">
             <img className="profile__camera" src="images/camera.png" alt="camera" />

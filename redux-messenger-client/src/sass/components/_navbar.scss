@@ -7,12 +7,13 @@
   -webkit-box-shadow: $navbar-boxshadow;
   -moz-box-shadow: $navbar-boxshadow;
   box-shadow: $navbar-boxshadow;
+  position: relative;
 
   &__ul {
     list-style: none;
   }
 
-  &__li a{
+  &__li a {
     text-decoration: none;
     color: black;
     margin-right: 1.5rem;
@@ -80,13 +81,13 @@
   }
 }
 
-.targeted {
-  background-color: $color-primary;
-
-  a {
-    color: white;
-  }
-}
+// .targeted {
+//   background-color: $color-primary;
+//
+//   a {
+//     color: white;
+//   }
+// }
 
 // MEDIA QUERIES //
 @media only screen and (max-width: 650px) {
@@ -94,6 +95,15 @@
   .loggedin-navbar {
     &__li {
       width: 25%;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+
+  .loggedin-navbar {
+    &__li {
+      font-size: .8rem;
     }
   }
 }

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import Navbar from './navbar/Navbar.js'
+import Navbar from './home/Navbar.js'
 import Home from './home/Home.js'
-import Login from './login/Login.js'
-import Signup from './signup/Signup.js'
+import Login from './home/Login.js'
+import Signup from './home/Signup.js'
 import Profile from './profile/Profile.js'
+import Messages from './messages/Messages.js'
 import '../sass/main.scss'
 import { connect } from 'react-redux'
 import Adapter from '../adapters/adapter.js';
@@ -15,10 +16,6 @@ class App extends Component {
     showPassword: false,
     user: 1,
     editProfile: false
-    // name: false,
-    // birthday: false,
-    // gender: false,
-    // password: false
   }
 
   componentDidMount() {
@@ -86,6 +83,13 @@ class App extends Component {
             <Profile
               editProfile={this.state.editProfile}
               handleClickEditProfile={this.handleClickEditProfile}
+            />
+          }
+        />
+        <Route
+          path="/messages"
+          render={props =>
+            <Messages
             />
           }
         />
