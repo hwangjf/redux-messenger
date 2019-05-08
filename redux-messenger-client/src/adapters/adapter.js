@@ -1,5 +1,5 @@
 class Adapter {
-  static loggedIn = () => {
+  static isLoggedIn = () => {
     return !!Adapter.getToken
   }
 

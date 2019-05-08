@@ -8,7 +8,10 @@ import Profile from './profile/Profile.js'
 import Messages from './messages/Messages.js'
 import '../sass/main.scss'
 import { connect } from 'react-redux'
-import Adapter from '../adapters/adapter.js';
+import Adapter from '../adapters/Adapter.js';
+import UsersAdapter from '../adapters/UsersAdapter'
+
+const usersAdapter = new UsersAdapter()
 
 class App extends Component {
   state = {
@@ -19,19 +22,23 @@ class App extends Component {
   }
 
   componentDidMount() {
-    if (Adapter.loggedIn()) {
+    if (Adapter.isLoggedIn()) {
+      usersAdapter.autoLogin()
+        .then(data => {
+          console.log(data)
+        })
     }
   }
 
   handleClickLogin = () => {
-    this.setState({ login : true })
+    this.setState({ login: true })
   }
 
   handleClickClose = (event) => {
     let form = document.querySelector(".login__modal")
     let close = document.querySelector(".close")
     if (event.target === form || event.target === close) {
-      this.setState ({ login : false })
+      this.setState ({ login: false })
     }
   }
 
