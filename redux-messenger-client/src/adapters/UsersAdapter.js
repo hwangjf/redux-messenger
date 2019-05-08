@@ -1,7 +1,7 @@
-import ApiAdapter from './ApiAdapter'
+import ApiAdapter from './apiAdapter'
 
 class UsersAdapter extends ApiAdapter {
-  
+
   // post /users => users#create
   signup = (userInfo) => {
     return this.post('/users', {

@@ -8,7 +8,7 @@ import Profile from './profile/Profile.js'
 import Messages from './messages/Messages.js'
 import '../sass/main.scss'
 import { connect } from 'react-redux'
-import Adapter from '../adapters/Adapter.js';
+import Adapter from '../adapters/adapter.js';
 import UsersAdapter from '../adapters/UsersAdapter'
 
 const usersAdapter = new UsersAdapter()

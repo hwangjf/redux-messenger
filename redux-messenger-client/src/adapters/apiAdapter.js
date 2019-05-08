@@ -1,4 +1,4 @@
-import Adapter from "./Adapter"
+import Adapter from "./adapter"
 
 const baseUrl = 'http://localhost:4000/api/v1'
 // TODO: move baseUrl to env.process.

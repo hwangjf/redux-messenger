@@ -1,93 +1,109 @@
-.messages {
+.messages--container {
   display: flex;
   height: 100vh;
   margin-top: -3.5rem;
   padding-top: 3.5rem;
+}
 
-  &__messages {
-    height: 100%;
-    width: 30%;
-    border-right: 1px $color-primary solid;
-    overflow-y: scroll;
+.messages {
+  height: 100%;
+  width: 30%;
+  border-right: 1px $color-primary solid;
+  overflow-y: scroll;
 
-    &__header {
-      position: relative;
-      display: flex;
-      align-items: center;
-      height: 4rem;
-      color: $color-primary;
+  &__header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 4rem;
+    color: $color-primary;
 
-      &__content {
-        display: block;
-        position: relative;
-        left: 50%;
-        transform: translateX(-50%);
-      }
+    &__new-message-img {
+      height: 2rem;
+      width: 2rem;
+      position: absolute;
+      right: 0;
+      margin-right: 1rem;
 
-      &__new-message {
-        height: 2rem;
-        width: 2rem;
-        position: absolute;
-        right: 0;
-        margin-right: 1rem;
-
-        &:hover {
-          cursor: pointer;
-        }
-      }
-    }
-
-    &__search {
-      padding: .5rem 0rem;
-
-      &__input {
-        width: 95%;
-        margin: auto;
-        background-color: rgba(lightgrey, .3);
-        border: none;
-        padding-left: 3rem;
-        background-image: url("/images/magnifier.png");
-        background-repeat: no-repeat;
-        background-size: 1.25rem;
-        background-position: .75rem;
-        border: .5px solid white;
-        border-radius: 5px;
-
-        &::placeholder {
-          color: grey;
-        }
+      &:hover {
+        cursor: pointer;
       }
     }
 
     &__content {
-      height: 5rem;
+      display: block;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
     }
   }
 
-  &__message {
-    width: 70%;
-
-    &__header {
-      height: 4rem;
-      border-bottom: 1px $color-primary solid;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+  &__search {
+    padding: .5rem 0rem;
 
     &__input {
+      width: 95%;
+      margin: auto;
+      background-color: rgba(lightgrey, .3);
+      border: none;
+      padding-left: 3rem;
+      background-image: url("/images/magnifier.png");
+      background-repeat: no-repeat;
+      background-size: 1.25rem;
+      background-position: .75rem;
+      border: .5px solid white;
+      border-radius: 5px;
+
+      &::placeholder {
+        color: grey;
+      }
+    }
+  }
+
+  &__content {
+    height: 5rem;
+
+    &__img {
+
+    }
+  }
+}
+
+.message {
+  width: 70%;
+
+  &__header {
+    height: 4rem;
+    border-bottom: 1px $color-primary solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__input {
+    border: none;
+    border-top: 1px $color-primary solid;
+    width: 70%;
+    height: 3rem;
+    bottom: 0;
+    border-radius: 0;
+    position: absolute;
+    padding-right: 2.5rem;
+
+    &:focus {
       border: none;
       border-top: 1px $color-primary solid;
-      width: 70%;
-      height: 3rem;
-      bottom: 0;
-      border-radius: 0;
-      position: absolute;
+    }
+  }
 
-      &:focus {
-        border: none;
-        border-top: 1px $color-primary solid;
-      }
+  &__send-arrow-img {
+    width: 1.5rem;
+    position: absolute;
+    bottom: .6rem;
+    right: .6rem;
+
+    &:hover {
+      cursor: pointer;
     }
   }
 }
@@ -95,34 +111,31 @@
 // MEDIA QUERIES //
 @media only screen and (max-width: 600px) {
   .messages {
-    &__messages {
-      width: 15%;
+    width: 15%;
 
-      &__header {
-        text-align: center;
+    &__header {
+      text-align: center;
 
-        &__content {
-          display: none;
-        }
-
-        &__new-message {
-          position: static;
-          margin: auto;
-        }
+      &__new-message-img {
+        position: static;
+        margin: auto;
       }
 
-      &__search {
+      &__content {
         display: none;
       }
     }
 
-    &__message {
-      width: 85%;
-
-      &__input {
-        width: 85%;
-      }
+    &__search {
+      display: none;
     }
+  }
 
+  .message {
+    width: 85%;
+
+    &__input {
+      width: 85%;
+    }
   }
 }
