@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const Home = () => {
 
@@ -7,7 +7,7 @@ const Home = () => {
     <div className="home">
       <div className="home__container">
         <div className="home__header">Share your moments with family and friends</div>
-        <Link className="btn btn__large" to="/signup">Sign up today!</Link>
+        <NavLink className="btn btn__large" to="/signup">Sign up today!</NavLink>
       </div>
     </div>
   )

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const Navbar = (props) => {
 
@@ -7,17 +7,17 @@ const Navbar = (props) => {
     <div className="navbar">
       <ul className="navbar__ul">
         <li className="navbar__li">
-          <Link to="/">Logo</Link>
+          <NavLink to="/">Logo</NavLink>
         </li>
       </ul>
       {props.user
         ?
         <div className="loggedin-navbar">
           <ul className="loggedin-navbar__ul">
-            <li className="loggedin-navbar__li"><Link to="/profile">Profile</Link></li>
-            <li className="loggedin-navbar__li"><Link to="/messages">Messages</Link></li>
-            <li className="loggedin-navbar__li"><Link to="/contacts">Contacts</Link></li>
-            <li className="loggedin-navbar__li"><Link to="/">Logout</Link></li>
+            <li className="loggedin-navbar__li"><NavLink to="/profile" activeClassName="targeted">Profile</NavLink></li>
+            <li className="loggedin-navbar__li"><NavLink to="/messages" activeClassName="targeted">Messages</NavLink></li>
+            <li className="loggedin-navbar__li"><NavLink to="/contacts" activeClassName="targeted">Contacts</NavLink></li>
+            <li className="loggedin-navbar__li"><NavLink to="/">Logout</NavLink></li>
           </ul>
         </div>
         :
