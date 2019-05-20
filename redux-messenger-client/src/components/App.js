@@ -8,7 +8,7 @@ import Profile from './profile/Profile'
 import Messages from './messages/Messages'
 import '../sass/main.scss'
 import { connect } from 'react-redux'
-import { 
+import {
   Adapter,
   UsersAdapter
 } from '../adapters'
@@ -19,7 +19,7 @@ class App extends Component {
   state = {
     login: false,
     showPassword: false,
-    user: 1,
+    user: null,
     editProfile: false
   }
 

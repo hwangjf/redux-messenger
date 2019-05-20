@@ -13,7 +13,7 @@ class Signup extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    
+
     this.props.signup(this.state)
   }
 
@@ -74,7 +74,7 @@ class Signup extends React.Component {
         </form>}
       </div>
     )
-}  
+}
 }
 
 export default connect(null, { signup } )(Signup)

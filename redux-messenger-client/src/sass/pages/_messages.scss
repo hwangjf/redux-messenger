@@ -8,6 +8,7 @@
 .messages {
   height: 100%;
   width: 30%;
+  min-width: 5rem;
   border-right: 1px $color-primary solid;
   overflow-y: scroll;
 
@@ -62,9 +63,55 @@
 
   &__content {
     height: 5rem;
+    width: 100%;
+    display: flex;
+    margin-bottom: .5rem;
+    padding: 0rem 0rem 0rem 1rem;
 
     &__img {
+      width: 5rem;
+      height: 5rem;
+      padding: .25rem;
+      border-radius: 50%;
+      }
 
+    &__container {
+      width: 83%;
+      min-width: 0;
+      padding: 1rem;
+    }
+
+    &__container--sub {
+      display: flex;
+      align-items: center;
+    }
+
+    &__name {
+      font-weight: bold;
+      margin-right: 1rem;
+      min-width: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    &__date {
+      margin-left: auto;
+      font-size: .8rem;
+      color: grey;
+    }
+
+    &__message {
+      margin-top: .25rem;
+      width: 95%;
+      min-width: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 }
@@ -128,6 +175,18 @@
 
     &__search {
       display: none;
+    }
+
+    &__content {
+      padding: 0;
+
+      &__img {
+        margin: auto;
+      }
+
+      &__container {
+        display: none;
+      }
     }
   }
 

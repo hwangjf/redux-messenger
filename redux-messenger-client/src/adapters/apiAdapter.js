@@ -23,9 +23,10 @@ class ApiAdapter {
     })
       .then(res => res.json())
       .then(data => {
-        if (data.token) {
-          Adapter.setToken(token)
-        }
+        debugger
+        // if (data.token) {
+        //   Adapter.setToken(token)
+        // }
       })
   }
 
