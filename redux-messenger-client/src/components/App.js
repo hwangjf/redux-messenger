@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import Navbar from './home/Navbar.js'
-import Home from './home/Home.js'
-import Login from './home/Login.js'
-import Signup from './home/Signup.js'
-import Profile from './profile/Profile.js'
-import Messages from './messages/Messages.js'
+import Navbar from './home/Navbar'
+import Home from './home/Home'
+import Login from './home/Login'
+import Signup from './home/Signup'
+import Profile from './profile/Profile'
+import Messages from './messages/Messages'
 import '../sass/main.scss'
 import { connect } from 'react-redux'
-import Adapter from '../adapters/adapter.js';
-import UsersAdapter from '../adapters/UsersAdapter'
+import { 
+  Adapter,
+  UsersAdapter
+} from '../adapters'
+// import UsersAdapter from '../adapters/UsersAdapter'
 
-const usersAdapter = new UsersAdapter()
 
 class App extends Component {
   state = {
@@ -22,11 +24,12 @@ class App extends Component {
   }
 
   componentDidMount() {
+
     if (Adapter.isLoggedIn()) {
-      usersAdapter.autoLogin()
-        .then(data => {
-          console.log(data)
-        })
+      // usersAdapter.autoLogin()
+      //   .then(data => {
+      //     console.log(data)
+      //   })
     }
   }
 
@@ -35,6 +38,7 @@ class App extends Component {
   }
 
   handleClickClose = (event) => {
+    // this is gross
     let form = document.querySelector(".login__modal")
     let close = document.querySelector(".close")
     if (event.target === form || event.target === close) {
@@ -51,6 +55,8 @@ class App extends Component {
   }
 
   render() {
+    // we need to discuss how this stuff is being conditionally rendered.
+    // why is the render prop being used over the component
     return (
       <React.Fragment>
         <Navbar
@@ -60,19 +66,17 @@ class App extends Component {
         <Route
           exact path="/"
           render={props =>
-            <Home
-            />
+            <Home />
           }
         />
-        {this.state.login
-        ?
-        <Login
-          handleClickClose={this.handleClickClose}
-          showPassword={this.state.showPassword}
-          handleClickPassword={this.handleClickPassword}
-        />
-        :
-        null
+        {
+          this.state.login
+        ? <Login
+            handleClickClose={this.handleClickClose}
+            showPassword={this.state.showPassword}
+            handleClickPassword={this.handleClickPassword}
+          />
+        : null
         }
         <Route
           path="/signup"

@@ -1,8 +1,5 @@
 import Adapter from "./adapter"
 
-const baseUrl = 'http://localhost:4000/api/v1'
-// TODO: move baseUrl to env.process.
-
 class ApiAdapter {
   constructor(baseUrl) {
     this.baseUrl = baseUrl
@@ -21,14 +18,19 @@ class ApiAdapter {
   }
 
   get = (endpoint) => {
-    return fetch(`${baseUrl}${endpoint}`, {
+    return fetch(`${this.baseUrl}${endpoint}`, {
       headers: this.headers
     })
       .then(res => res.json())
+      .then(data => {
+        if (data.token) {
+          Adapter.setToken(token)
+        }
+      })
   }
 
   post = (endpoint, body) => {
-    return fetch(`${baseUrl}${endpoint}`, {
+    return fetch(`${this.baseUrl}${endpoint}`, {
       method: 'POST',
       headers: this.headers,
       body: JSON.stringify(body)
@@ -37,7 +39,7 @@ class ApiAdapter {
   }
 
   patch = (endpoint, body) => {
-    return fetch(`${baseUrl}${endpoint}`, {
+    return fetch(`${this.baseUrl}${endpoint}`, {
       method: 'PATCH',
       headers: this.headers,
       body: JSON.stringify(body)

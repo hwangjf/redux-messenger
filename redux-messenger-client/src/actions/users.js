@@ -7,17 +7,34 @@ import {
   LOGIN
 } from '../types'
 
-export const loginUser = (userInfo) => {
-  return dispatch => {
-    dispatch(authenticatingUser)
+export const loginUser = (userInfo) => dispatch => {
+  dispatch(authenticatingUser)
+  
+  UsersAdapter.login(userInfo)
+    .then(data => {
+      setCurrentUser(userInfo)
+      // dispatch({type: AUTHENTICATED_USER})
+      // dispatch()
+    })
 
-    UsersAdapter.login(userInfo)
-      .then()
-  }
 }
 
-const login = (userInfo) => ({
-  type: LOGIN,
+export const signup = (userInfo) => dispatch => {
+  dispatch(authenticatingUser)
+
+  UsersAdapter.signup(userInfo)
+    .then(data => {
+      debugger
+      setCurrentUser(userInfo)
+      // dispatch({type: AUTHENTICATED_USER})
+      // dispatch()
+    })
+}
+
+
+
+const setCurrentUser = (userInfo) => ({
+  type: SET_CURRENT_USER,
   payload: userInfo
 })
 

@@ -17,6 +17,7 @@ const usersReducer = (state = initialState, action) => {
 
   switch (action.payload) {
     case SET_CURRENT_USER:
+      debugger
       return {
         ...state,
         user: action.payload,

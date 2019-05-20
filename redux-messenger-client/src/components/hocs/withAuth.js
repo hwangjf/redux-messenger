@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import fetchCurrentUser from './../actions/users'
-import Adapter from '../../adapters/adapter';
+import { Adapter } from '../../adapters';
 import { Redirect } from 'react-router-dom'
 
 const withAuth =  (WrappedComponent) => {
   class AuthorizedComponent extends Component {
     componentDidMount() {
       if (Adapter.loggedIn && !this.props.loggedIn) {
-        // login
+        // auto login
+
       }
     }
 
@@ -18,6 +19,7 @@ const withAuth =  (WrappedComponent) => {
         return <WrappedComponent />
       } else if (Adapter.loggedIn && (this.props.authenticatingUser || !this.props.loggedIn)) {
         // has token and attempting log in
+        // replace with loading spinner
         return <div>Loading</div>
       } else {
         // not logged in can redirect or do something else
@@ -26,8 +28,8 @@ const withAuth =  (WrappedComponent) => {
     }
   }
 
-  const mapStateToProps = () => {
-    return null
+  const mapStateToProps = (state) => {
+    return state
   }
   // const mapDispatchToProps = { fetchCurrentUser }
 

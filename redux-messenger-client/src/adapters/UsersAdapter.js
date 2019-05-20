@@ -1,27 +1,47 @@
 import ApiAdapter from './apiAdapter'
+import { Adapter } from '.';
+
+const baseUrl = 'http://localhost:4000/api/v1'
+// TODO: move baseUrl to env.process.
+const apiAdapter = new ApiAdapter(baseUrl)
 
 class UsersAdapter extends ApiAdapter {
-
+ 
   // post /users => users#create
   signup = (userInfo) => {
-    return this.post('/users', {
+    console.log(this)
+    return apiAdapter.post('/users', {
       user: userInfo
     })
-      .then(res => res.json())
+      .then(data => {
+        Adapter.login(data.token)
+        return data
+      })
   }
 
   login = (userInfo) => {
-    return this.post('/login', {
+    return apiAdapter.post('/login', {
       user: userInfo
     })
-      .then(res => res.json())
+      .then(data => {
+        Adapter.login(data.token)
+        return data
+      })
   }
 
   autoLogin = () => {
-    this.addAuthHeaders()
+    apiAdapter.addAuthHeaders()
     return this.get('/auto_login')
+      .then(data => {
+        Adapter.login(data.token)
+        return data
+      })
   }
 
 }
 
-export default UsersAdapter
+// const a = new UsersAdapter
+// debugger
+const usersAdapter = new UsersAdapter
+
+export default usersAdapter
