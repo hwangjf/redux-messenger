@@ -1,4 +1,4 @@
-import ApiAdapter from './apiAdapter'
+import ApiAdapter from './_apiAdapter'
 import { Adapter } from '.';
 
 const baseUrl = 'http://localhost:4000/api/v1'
@@ -7,41 +7,46 @@ const apiAdapter = new ApiAdapter(baseUrl)
 
 class UsersAdapter extends ApiAdapter {
  
-  // post /users => users#create
+  apiAdapter = apiAdapter
+
   signup = (userInfo) => {
     console.log(this)
-    return apiAdapter.post('/users', {
+    return this.apiAdapter.post('/signup', {
       user: userInfo
     })
       .then(data => {
-        Adapter.login(data.token)
+        Adapter.setToken(data.token)
         return data
       })
   }
 
   login = (userInfo) => {
-    return apiAdapter.post('/login', {
+    return this.apiAdapter.post('/login', {
       user: userInfo
     })
       .then(data => {
-        Adapter.login(data.token)
+        Adapter.setToken(data.token)
         return data
       })
   }
 
   autoLogin = () => {
-    apiAdapter.addAuthHeaders()
+    this.apiAdapter.addAuthHeaders()
     return this.get('/auto_login')
       .then(data => {
-        Adapter.login(data.token)
+        Adapter.setToken(data.token)
         return data
       })
   }
 
+  logout = () => {
+    Adapter.logout()
+    return 'logged out'
+  }
+
 }
 
-// const a = new UsersAdapter
-// debugger
-const usersAdapter = new UsersAdapter
+// users adapter that connects to user related backend routes
+const usersAdapter = (new UsersAdapter())
 
 export default usersAdapter

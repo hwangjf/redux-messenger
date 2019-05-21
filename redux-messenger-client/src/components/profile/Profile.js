@@ -11,7 +11,11 @@ const Profile = (props) => {
       </div>
       <div className="profile">
         <div className="profile__image--container">
-          <img className="profile__image--image" src="https://i.pinimg.com/originals/ae/c4/53/aec453161b2f33ffc6219d8a758307a9.jpg" alt="profile" />
+          <img 
+            className="profile__image--image" 
+            src="https://i.pinimg.com/originals/ae/c4/53/aec453161b2f33ffc6219d8a758307a9.jpg" 
+            alt="profile" 
+          />
           <div className="profile__image--default"></div>
           <div className="profile__camera--container">
             <img className="profile__camera" src="images/camera.png" alt="camera" />

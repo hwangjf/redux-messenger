@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import React, { Component } from 'react'
+import { Route } from 'react-router-dom'
 import Navbar from './home/Navbar'
 import Home from './home/Home'
 import Login from './home/Login'
@@ -8,28 +8,19 @@ import Profile from './profile/Profile'
 import Messages from './messages/Messages'
 import '../sass/main.scss'
 import { connect } from 'react-redux'
-import { 
-  Adapter,
-  UsersAdapter
-} from '../adapters'
-// import UsersAdapter from '../adapters/UsersAdapter'
-
+import { Adapter } from '../adapters'
 
 class App extends Component {
   state = {
-    login: false,
+    login: true,
     showPassword: false,
-    user: 1,
+    user: null,
     editProfile: false
   }
 
   componentDidMount() {
-
     if (Adapter.isLoggedIn()) {
-      // usersAdapter.autoLogin()
-      //   .then(data => {
-      //     console.log(data)
-      //   })
+      
     }
   }
 
@@ -109,8 +100,10 @@ class App extends Component {
   }
 }
 
-// function mapStateToProps() {
-//
-// }
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  }
+}
 
-export default connect(null)(App)
+export default connect(mapStateToProps)(App)

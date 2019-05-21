@@ -1,8 +1,5 @@
 import {
-  SET_CURRENT_USER,
-  AUTHENTICATING_USER,
-  AUTHENTICATED_USER,
-  FAILED_LOGIN
+  userConstants
 } from '../types'
 
 const initialState = {
@@ -14,30 +11,22 @@ const initialState = {
 }
 
 const usersReducer = (state = initialState, action) => {
-
   switch (action.payload) {
-    case SET_CURRENT_USER:
-      debugger
+    case userConstants.LOGIN_SUCCESS:
       return {
         ...state,
         user: action.payload,
         loggedIn: true,
         authenticatingUser: false
       }
-    case AUTHENTICATING_USER:
+    case userConstants.LOGIN_REQUEST:
       return {
         ...state, 
         authenticatingUser: true
       }
-    case AUTHENTICATED_USER:
+    case userConstants.LOGIN_FAILURE:
       return {
         ...state,
-        authenticatingUser: false
-      }
-    case FAILED_LOGIN: 
-      return {
-        ...state,
-        failedLogin: true,
         error: action.payload,
         authenticatingUser: false
       }

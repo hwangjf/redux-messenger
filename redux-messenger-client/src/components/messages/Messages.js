@@ -14,17 +14,17 @@ const Messages = (props) => {
           <input className="messages__search__input input" placeholder="Search"></input>
         </div>
         <div className="messages__content">
-          <img className="messages__content__img" src="" alt="contact-image" />
+          <img className="messages__content__img" src="" alt="contact-icon" />
           <div></div>
           <div></div>
         </div>
         <div className="messages__content">
-          <img className="messages__content__img" src="" alt="contact-image" />
+          <img className="messages__content__img" src="" alt="contact-icon" />
           <div></div>
           <div></div>
         </div>
         <div className="messages__content">
-          <img className="messages__content__img" src="" alt="contact-image" />
+          <img className="messages__content__img" src="" alt="contact-icon" />
           <div></div>
           <div></div>
         </div>

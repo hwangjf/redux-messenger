@@ -1,12 +1,11 @@
 class Adapter {
-  
   static isLoggedIn = () => !!Adapter.getToken
 
   static getToken = () => localStorage.getItem('token')
   
-  static logout = () => localStorage.removeItem('token')
+  static removeToken = () => localStorage.removeItem('token')
 
-  static login = (token) => localStorage.setItem('token', token)
+  static setToken = (token) => localStorage.setItem('token', token)
 }
 
 export default Adapter;
