@@ -1,5 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import Login from './Login'
+
 
 const Navbar = (props) => {
 
@@ -21,7 +23,7 @@ const Navbar = (props) => {
           </ul>
         </div>
         :
-        <div className="navbar__li btn btn__medium" href=" " onClick={()=>props.handleClickLogin()}>Login</div>
+        <Login handleClickLogin={props.handleClickLogin} handleClickPassword={props.handleClickPassword} showPassword={props.showPassword}/>
       }
     </div>
   )

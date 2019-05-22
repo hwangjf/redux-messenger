@@ -24,48 +24,41 @@ class Signup extends React.Component {
   render() {
     return (
       <div className="signup">
-        {this.props.login
-          ? null
-          : <form className="form signup__form" onSubmit={this.handleSubmit} >
-              <div className="header signup__header">Signup</div>
-              <input
-                className="input signup__input"
-                type="text"
-                id="name"
-                placeholder="Enter your name"
-                onFocus={(event) => event.target.placeholder = ""}
-                onBlur={(event) => event.target.placeholder = "Enter your name"}
-                required
-                value={this.state.username}
-                name="username"
-                onChange={this.handleChange}
-              >
-              </input>
-              <img
-                className="login__image--aria-eye"
-                src={
-                  this.props.showPassword
-                    ? "images/aria-eye-show.png"
-                    : "images/aria-eye-hide.png"
-                }
-                alt="aria-eye"
-                onClick={() => { this.props.handleClickPassword() }}
-              />
-
-            <input
-              className="input signup__input"
-              type={this.props.showPassword ? "text" : "password" }
-              id="password"
-              placeholder="Enter your password"
-              onFocus={(event) => event.target.placeholder = ""}
-              onBlur={(event) => event.target.placeholder = "Enter your password"}
-              required
-              name="password"
-              onChange={this.handleChange}
-              value={this.state.password}
-            />
+        <form className="form signup__form" onSubmit={this.handleSubmit}>
+          <div className="header signup__header">Signup</div>
+          <input
+            className="input signup__input"
+            type="text"
+            id="name"
+            placeholder="Enter your name"
+            required
+            value={this.state.username}
+            name="username"
+            onChange={this.handleChange}
+          >
+          </input>
+          <img
+            className="signup__image--aria-eye"
+            src={
+              this.props.showPassword
+                ? "images/aria-eye-show.png"
+                : "images/aria-eye-hide.png"
+            }
+            alt="aria-eye"
+            onClick={() => { this.props.handleClickPassword() }}
+          />
+          <input
+            className="input signup__input"
+            type={this.props.showPassword ? "text" : "password" }
+            id="password"
+            placeholder="Enter your password"
+            required
+            name="password"
+            onChange={this.handleChange}
+            value={this.state.password}
+          />
           <button type="submit" className="btn btn__large">Signup</button>
-        </form>}
+        </form>
       </div>
     )
 }

@@ -20,50 +20,44 @@ class Login extends React.Component {
     })
   }
 
-  render() {
+  render(props) {
     // console.log(this.props)
     return (
-      <div className="login__modal" onClick={(event)=> this.props.handleClickClose(event)}>
-        <form className="form login__form" onSubmit={this.handleSubmit}>
-          <div className="header login__header">Login</div>
-          <div className="close" onClick={(event)=> this.props.handleClickClose(event)}>&#215;</div>
+      <div className="login">
+        <form className="login__form" onSubmit={this.handleSubmit}>
           <input
             className="input login__input"
             type="text"
             id="name"
-            placeholder="Enter your username"
-            onFocus={(event) => event.target.placeholder = ""}
-            onBlur={(event) => event.target.placeholder = "Enter your username"}
+            placeholder="Username"
             required
             name="username"
             onChange={this.handleChange}
             value={this.state.username}
           />
-          
-          <img 
-            className="login__image--aria-eye" 
-            src={
-              this.props.showPassword 
-                ? "images/aria-eye-show.png" 
-                : "images/aria-eye-hide.png"
-            } 
-            alt="aria-eye" 
-            onClick={()=>{ this.props.handleClickPassword()}}
-          />
+
           <input
-            className="input login__input"
+            className="input login__input login__input__password"
             type={this.props.showPassword ? "text" : "password" }
             id="password"
-            placeholder="Enter your password"
-            onFocus={(event) => event.target.placeholder = ""}
-            onBlur={(event) => event.target.placeholder = "Enter your password"}
+            placeholder="Password"
             required
             name="password"
             onChange={this.handleChange}
             value={this.state.password}
           />
-          <button className="btn btn__large">Login</button>
-        </form>    
+          <img
+          className="login__image--aria-eye"
+          src={
+            this.props.showPassword
+            ? "images/aria-eye-show.png"
+            : "images/aria-eye-hide.png"
+          }
+          alt="aria-eye"
+          onClick={()=>{this.props.handleClickPassword()}}
+          />
+        <button className="btn btn__medium">Login</button>
+        </form>
       </div>
     )
   }

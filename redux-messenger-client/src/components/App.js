@@ -3,7 +3,6 @@ import { Route } from 'react-router-dom'
 
 import Navbar from './home/Navbar'
 import Home from './home/Home'
-import Login from './home/Login'
 import Signup from './home/Signup'
 import Profile from './profile/Profile'
 import Messages from './messages/Messages'
@@ -55,6 +54,8 @@ class App extends Component {
       <React.Fragment>
         <Navbar
           handleClickLogin={this.handleClickLogin}
+          handleClickPassword={this.handleClickPassword}
+          showPassword={this.state.showPassword}
           user={this.state.user}
         />
         <Route
@@ -63,20 +64,10 @@ class App extends Component {
             <Home />
           }
         />
-        {
-          this.state.login
-        ? <Login
-            handleClickClose={this.handleClickClose}
-            showPassword={this.state.showPassword}
-            handleClickPassword={this.handleClickPassword}
-          />
-        : null
-        }
         <Route
           path="/signup"
           render={props =>
             <Signup
-              login={this.state.login}
               showPassword={this.state.showPassword}
               handleClickPassword={this.handleClickPassword}
             />
