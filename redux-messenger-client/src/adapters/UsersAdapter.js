@@ -3,15 +3,18 @@ import { Adapter } from '.';
 
 const baseUrl = 'http://localhost:4000/api/v1'
 // TODO: move baseUrl to env.process.
-const apiAdapter = new ApiAdapter(baseUrl)
+// const apiAdapter = new ApiAdapter(baseUrl)
 
 class UsersAdapter extends ApiAdapter {
  
-  apiAdapter = apiAdapter
+  // apiAdapter = apiAdapter
+  // constructor() {
+
+  // }
 
   signup = (userInfo) => {
     console.log(this)
-    return this.apiAdapter.post('/signup', {
+    return this.post('/signup', {
       user: userInfo
     })
       .then(data => {
@@ -21,7 +24,7 @@ class UsersAdapter extends ApiAdapter {
   }
 
   login = (userInfo) => {
-    return this.apiAdapter.post('/login', {
+    return this.post('/login', {
       user: userInfo
     })
       .then(data => {
@@ -31,7 +34,7 @@ class UsersAdapter extends ApiAdapter {
   }
 
   autoLogin = () => {
-    this.apiAdapter.addAuthHeaders()
+    this.addAuthHeaders()
     return this.get('/auto_login')
       .then(data => {
         Adapter.setToken(data.token)
@@ -47,6 +50,7 @@ class UsersAdapter extends ApiAdapter {
 }
 
 // users adapter that connects to user related backend routes
-const usersAdapter = (new UsersAdapter())
+const usersAdapter = (new UsersAdapter(baseUrl))
+console.log(usersAdapter)
 
 export default usersAdapter

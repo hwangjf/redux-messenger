@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
+
 import Navbar from './home/Navbar'
 import Home from './home/Home'
 import Login from './home/Login'
 import Signup from './home/Signup'
 import Profile from './profile/Profile'
 import Messages from './messages/Messages'
+
 import '../sass/main.scss'
-import { connect } from 'react-redux'
 import { Adapter } from '../adapters'
+import { connect } from 'react-redux'
+import { autoLogin } from '../actions/users';
 
 class App extends Component {
   state = {
@@ -20,7 +23,7 @@ class App extends Component {
 
   componentDidMount() {
     if (Adapter.isLoggedIn()) {
-      
+      this.props.autoLogin()
     }
   }
 
@@ -106,4 +109,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps, { autoLogin })(App)
