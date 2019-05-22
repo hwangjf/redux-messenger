@@ -5,7 +5,7 @@ class ApiAdapter {
     this.baseUrl = baseUrl
     this.headers = {
       "Content-type": "application/json",
-      "Accepts": "application/json"
+      "Accept": "application/json"
     }
   }
 
@@ -21,12 +21,17 @@ class ApiAdapter {
     return fetch(`${this.baseUrl}${endpoint}`, {
       headers: this.headers
     })
-      .then(res => res.json())
+      .then(res => {
+        if (res.ok) {
+          return res.json()
+        } else {
+          throw res.json()
+        }
+      })
       .then(data => {
-        debugger
-        // if (data.token) {
-        //   Adapter.setToken(token)
-        // }
+        if (data.token) {
+          Adapter.setToken(data.token)
+        }
       })
   }
 
@@ -36,7 +41,13 @@ class ApiAdapter {
       headers: this.headers,
       body: JSON.stringify(body)
     })
-      .then(res => res.json())
+      .then(res => {
+        if (res.ok) {
+          return res.json()
+        } else {
+          throw res
+        }
+      })
   }
 
   patch = (endpoint, body) => {
@@ -45,7 +56,13 @@ class ApiAdapter {
       headers: this.headers,
       body: JSON.stringify(body)
     })
-      .then(res => res.json())
+      .then(res => {
+        if (res.ok) {
+          return res.json()
+        } else {
+          throw res
+        }
+      })
   }
 }
 

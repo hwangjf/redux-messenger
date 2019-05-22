@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import fetchCurrentUser from './../actions/users'
+import login from './../actions/users'
 import { Adapter } from '../../adapters';
 import { Redirect } from 'react-router-dom'
 
@@ -23,7 +23,7 @@ const withAuth =  (WrappedComponent) => {
         return <div>Loading</div>
       } else {
         // not logged in can redirect or do something else
-        return <Redirect to="/signup" />
+        return <Redirect to="/" />
       }
     }
   }
@@ -31,9 +31,9 @@ const withAuth =  (WrappedComponent) => {
   const mapStateToProps = (state) => {
     return state
   }
-  // const mapDispatchToProps = { fetchCurrentUser }
+  // const mapDispatchToProps = { login }
 
-  return connect(mapStateToProps, { fetchCurrentUser })(AuthorizedComponent)
+  return connect(mapStateToProps, { login })(AuthorizedComponent)
 } 
 
 export default withAuth;

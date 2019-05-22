@@ -1,35 +1,29 @@
-import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import React, { Component } from 'react'
+import { Route } from 'react-router-dom'
+
 import Navbar from './home/Navbar'
 import Home from './home/Home'
 import Login from './home/Login'
 import Signup from './home/Signup'
 import Profile from './profile/Profile'
 import Messages from './messages/Messages'
-import '../sass/main.scss'
-import { connect } from 'react-redux'
-import {
-  Adapter,
-  UsersAdapter
-} from '../adapters'
-// import UsersAdapter from '../adapters/UsersAdapter'
 
+import '../sass/main.scss'
+import { Adapter } from '../adapters'
+import { connect } from 'react-redux'
+import { autoLogin } from '../actions/users';
 
 class App extends Component {
   state = {
-    login: false,
+    login: true,
     showPassword: false,
     user: null,
     editProfile: false
   }
 
   componentDidMount() {
-
     if (Adapter.isLoggedIn()) {
-      // usersAdapter.autoLogin()
-      //   .then(data => {
-      //     console.log(data)
-      //   })
+      this.props.autoLogin()
     }
   }
 
@@ -109,8 +103,10 @@ class App extends Component {
   }
 }
 
-// function mapStateToProps() {
-//
-// }
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  }
+}
 
-export default connect(null)(App)
+export default connect(mapStateToProps, { autoLogin })(App)

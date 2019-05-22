@@ -1,43 +1,83 @@
 import UsersAdapter from '../adapters/UsersAdapter'
 import {
-  SET_CURRENT_USER,
-  AUTHENTICATING_USER,
-  AUTHENTICATED_USER,
-  FAILED_LOGIN,
-  LOGIN
+  userConstants
 } from '../types'
+import { Adapter } from '../adapters';
 
-export const loginUser = (userInfo) => dispatch => {
-  dispatch(authenticatingUser)
+export const login = (userInfo) => dispatch => {
+  dispatch(loginRequest)
   
   UsersAdapter.login(userInfo)
     .then(data => {
-      setCurrentUser(userInfo)
-      // dispatch({type: AUTHENTICATED_USER})
-      // dispatch()
+      debugger
+      dispatch(loginSuccess(data.user))
     })
+    .catch(err => {
+      err.json().then(arg => {console.log(arg); debugger})
 
+      dispatch(loginFailure(err))
+    })
+}
+
+export const autoLogin = () => dispatch => {
+  dispatch(loginRequest) 
+
+  UsersAdapter.autoLogin()
+    .then(data => {
+      dispatch(loginSuccess(data.user))
+    })
+    .catch(err => {
+      dispatch(loginFailure(err))
+    })
 }
 
 export const signup = (userInfo) => dispatch => {
-  dispatch(authenticatingUser)
+  dispatch(loginRequest)
 
   UsersAdapter.signup(userInfo)
     .then(data => {
-      debugger
-      setCurrentUser(userInfo)
-      // dispatch({type: AUTHENTICATED_USER})
-      // dispatch()
+      dispatch(signupSuccess(data.user))
+    })
+    .catch(err => {
+      dispatch(signupFailure(err))
     })
 }
 
+export const logout = () => {
+  // removes token
+  Adapter.logout()
+}
 
-
-const setCurrentUser = (userInfo) => ({
-  type: SET_CURRENT_USER,
+// login success
+const loginSuccess = (userInfo) => ({
+  type: userConstants.LOGIN_SUCCESS,
   payload: userInfo
 })
 
-const authenticatingUser = {
-  type: AUTHENTICATING_USER
+// beginning login async action
+const loginRequest = {
+  type: userConstants.LOGIN_REQUEST
 }
+
+// login failure error
+const loginFailure = err => ({
+  type: userConstants.LOGIN_FAILURE,
+  payload: err.message
+})
+
+// signup success
+const signupSuccess = (userInfo) => ({
+  type: userConstants.SIGNUP_SUCCESS,
+  payload: userInfo
+})
+
+// beginning signup async action
+const signupRequest = {
+  type: userConstants.SIGNUP_REQUEST
+}
+
+// signup failure error
+const signupFailure = err => ({
+  type: userConstants.SIGNUP_FAILURE,
+  payload: err.message
+})
