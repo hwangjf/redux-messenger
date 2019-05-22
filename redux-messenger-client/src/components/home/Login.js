@@ -5,14 +5,13 @@ import { login } from '../../actions/users'
 class Login extends React.Component {
   state = {
     username: '',
-    password: ''
+    password: '',
   }
 
   handleChange = e => this.setState({[e.target.name]: e.target.value})
 
   handleSubmit = e => {
     e.preventDefault()
-
     this.props.login(this.state)
     this.setState({
       username: '',
@@ -21,7 +20,6 @@ class Login extends React.Component {
   }
 
   render(props) {
-    // console.log(this.props)
     return (
       <div className="login">
         <form className="login__form" onSubmit={this.handleSubmit}>

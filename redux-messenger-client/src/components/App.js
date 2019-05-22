@@ -16,7 +16,7 @@ class App extends Component {
   state = {
     login: true,
     showPassword: false,
-    user: null,
+    user: 1,
     editProfile: false
   }
 
