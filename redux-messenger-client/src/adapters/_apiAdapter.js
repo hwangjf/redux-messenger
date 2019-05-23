@@ -32,6 +32,7 @@ class ApiAdapter {
         if (data.token) {
           Adapter.setToken(data.token)
         }
+        return data
       })
   }
 

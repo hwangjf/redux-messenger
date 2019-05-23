@@ -24,9 +24,11 @@ export const autoLogin = () => dispatch => {
 
   UsersAdapter.autoLogin()
     .then(data => {
+      debugger
       dispatch(loginSuccess(data.user))
     })
     .catch(err => {
+      debugger
       dispatch(loginFailure(err))
     })
 }

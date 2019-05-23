@@ -14,7 +14,7 @@ const Messages = (props) => {
           <input className="messages__search__input input" placeholder="Search"></input>
         </div>
         <div className="messages__content">
-          <img className="messages__content__img" src="https://i.ytimg.com/vi/3ggIHfwkIWM/maxresdefault.jpg" alt="contact-image" />
+          <img className="messages__content__img" src="https://i.ytimg.com/vi/3ggIHfwkIWM/maxresdefault.jpg" alt="contact-imagetest" />
           <div className="messages__content__container">
             <div className="messages__content__container--sub">
               <div className="messages__content__name">Testing</div>
@@ -24,7 +24,7 @@ const Messages = (props) => {
           </div>
         </div>
         <div className="messages__content">
-          <img className="messages__content__img" src="https://i.ytimg.com/vi/3ggIHfwkIWM/maxresdefault.jpg" alt="contact-image" />
+          <img className="messages__content__img" src="https://i.ytimg.com/vi/3ggIHfwkIWM/maxresdefault.jpg" alt="contact-imagetest" />
           <div className="messages__content__container">
             <div className="messages__content__container--sub">
               <div className="messages__content__name">Testing</div>
@@ -34,7 +34,7 @@ const Messages = (props) => {
           </div>
         </div>
         <div className="messages__content">
-          <img className="messages__content__img" src="https://i.ytimg.com/vi/3ggIHfwkIWM/maxresdefault.jpg" alt="contact-image" />
+          <img className="messages__content__img" src="https://i.ytimg.com/vi/3ggIHfwkIWM/maxresdefault.jpg" alt="contact-imagetest" />
           <div className="messages__content__container">
             <div className="messages__content__container--sub">
               <div className="messages__content__name">Testing</div>

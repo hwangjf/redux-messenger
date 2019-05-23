@@ -28,7 +28,6 @@ class UsersAdapter extends ApiAdapter {
       user: userInfo
     })
       .then(data => {
-        Adapter.setToken(data.token)
         return data
       })
   }
@@ -37,7 +36,7 @@ class UsersAdapter extends ApiAdapter {
     this.addAuthHeaders()
     return this.get('/auto_login')
       .then(data => {
-        Adapter.setToken(data.token)
+        debugger
         return data
       })
   }

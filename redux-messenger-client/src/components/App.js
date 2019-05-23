@@ -16,13 +16,14 @@ class App extends Component {
   state = {
     login: true,
     showPassword: false,
-    user: 1,
+    user: null,
     editProfile: false
   }
 
   componentDidMount() {
     if (Adapter.isLoggedIn()) {
       this.props.autoLogin()
+    } else {
     }
   }
 
@@ -31,7 +32,6 @@ class App extends Component {
   }
 
   handleClickClose = (event) => {
-    // this is gross
     let form = document.querySelector(".login__modal")
     let close = document.querySelector(".close")
     if (event.target === form || event.target === close) {
@@ -50,6 +50,7 @@ class App extends Component {
   render() {
     // we need to discuss how this stuff is being conditionally rendered.
     // why is the render prop being used over the component
+    
     return (
       <React.Fragment>
         <Navbar
@@ -95,6 +96,7 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state)
   return {
     user: state.user
   }

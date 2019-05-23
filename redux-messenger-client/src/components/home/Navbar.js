@@ -1,7 +1,10 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { connect} from 'react-redux'
+
 import Login from './Login'
 
+import { logout } from './../../actions/users'
 
 const Navbar = (props) => {
 
@@ -19,7 +22,7 @@ const Navbar = (props) => {
             <li className="loggedin-navbar__li"><NavLink to="/profile" activeClassName="targeted">Profile</NavLink></li>
             <li className="loggedin-navbar__li"><NavLink to="/messages" activeClassName="targeted">Messages</NavLink></li>
             <li className="loggedin-navbar__li"><NavLink to="/contacts" activeClassName="targeted">Contacts</NavLink></li>
-            <li className="loggedin-navbar__li"><NavLink to="/">Logout</NavLink></li>
+            <li className="loggedin-navbar__li"><NavLink onClick={props.logout} to="/">Logout</NavLink></li>
           </ul>
         </div>
         :
@@ -29,4 +32,4 @@ const Navbar = (props) => {
   )
 }
 
-export default Navbar
+export default connect(null, {logout})(Navbar)
