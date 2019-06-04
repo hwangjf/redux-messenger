@@ -10,7 +10,7 @@ const initialState = {
   error: null
 }
 
-const usersReducer = (state = initialState, action) => {
+const user = (state = initialState, action) => {
   switch (action.payload) {
     case userConstants.LOGIN_SUCCESS:
       return {
@@ -21,7 +21,7 @@ const usersReducer = (state = initialState, action) => {
       }
     case userConstants.LOGIN_REQUEST:
       return {
-        ...state, 
+        ...state,
         authenticatingUser: true
       }
     case userConstants.LOGIN_FAILURE:
@@ -35,4 +35,4 @@ const usersReducer = (state = initialState, action) => {
   }
 }
 
-export default usersReducer
+export default user

@@ -9,8 +9,10 @@ export const login = (userInfo) => dispatch => {
   
   UsersAdapter.login(userInfo)
     .then(data => {
-      debugger
-      dispatch(loginSuccess(data.user))
+      const { user, token } = data
+
+      Adapter.setToken(token)
+      dispatch(loginSuccess(user))
     })
     .catch(err => {
       err.json().then(arg => {console.log(arg); debugger})
