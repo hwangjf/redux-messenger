@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Switch, withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 import Navbar from './home/Navbar'
 import Home from './home/Home'
@@ -7,10 +8,10 @@ import Signup from './home/Signup'
 import Profile from './profile/Profile'
 import Messages from './messages/Messages'
 
-import '../sass/main.scss'
 import { Adapter } from '../adapters'
-import { connect } from 'react-redux'
 import { autoLogin } from '../actions/users';
+
+import '../sass/main.scss'
 
 class App extends Component {
   state = {
@@ -23,7 +24,7 @@ class App extends Component {
   componentDidMount() {
     if (Adapter.isLoggedIn()) {
       this.props.autoLogin()
-    } else {
+      this.props.history.push('messages')
     }
   }
 
@@ -59,47 +60,49 @@ class App extends Component {
           showPassword={this.state.showPassword}
           user={this.state.user}
         />
-        <Route
-          exact path="/"
-          render={props =>
-            <Home />
-          }
-        />
-        <Route
-          path="/signup"
-          render={props =>
-            <Signup
-              showPassword={this.state.showPassword}
-              handleClickPassword={this.handleClickPassword}
-            />
-          }
-        />
-        <Route
-          path="/profile"
-          render={props =>
-            <Profile
-              editProfile={this.state.editProfile}
-              handleClickEditProfile={this.handleClickEditProfile}
-            />
-          }
-        />
-        <Route
-          path="/messages"
-          render={props =>
-            <Messages
-            />
-          }
-        />
+        <Switch>
+          <Route
+            exact path="/"
+            render={props => <Home /> }
+          />
+          <Route
+            path="/signup"
+            render={props =>
+              <Signup
+                showPassword={this.state.showPassword}
+                handleClickPassword={this.handleClickPassword}
+              />
+            }
+          />
+          <Route
+            path="/profile"
+            render={props => (
+              <Profile
+                editProfile={this.state.editProfile}
+                handleClickEditProfile={this.handleClickEditProfile}
+              />
+            )
+            }
+          />
+          <Route
+            path="/messages"
+            render={props => <Messages /> }
+          />
+        </Switch>
       </React.Fragment>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  console.log(state)
+const mapStateToProps = ({userReducer: {user, isLoggedIn}}) => {
+  // console.log(state)
+  // state.userReducer.user 
+  // state.user
+  // state.isLoading
   return {
-    user: state.user
+    user,
+    isLoggedIn
   }
 }
 
-export default connect(mapStateToProps, { autoLogin })(App)
+export default withRouter(connect(mapStateToProps, { autoLogin })(App))

@@ -13,7 +13,6 @@ class UsersAdapter extends ApiAdapter {
   // }
 
   signup = (userInfo) => {
-    console.log(this)
     return this.post('/signup', {
       user: userInfo
     })
@@ -27,18 +26,12 @@ class UsersAdapter extends ApiAdapter {
     return this.post('/login', {
       user: userInfo
     })
-      .then(data => {
-        return data
-      })
   }
 
   autoLogin = () => {
     this.addAuthHeaders()
+
     return this.get('/auto_login')
-      .then(data => {
-        debugger
-        return data
-      })
   }
 
   logout = () => {

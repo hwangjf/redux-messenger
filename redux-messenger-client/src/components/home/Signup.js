@@ -2,12 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { signup } from '../../actions/users'
 
+const initialState = {
+  username: '',
+  password: ''
+}
 class Signup extends React.Component {
 
-  state = {
-    username: '',
-    password: ''
-  }
+  state = initialState
 
   handleChange = e => this.setState({[e.target.name]: e.target.value})
 
@@ -15,10 +16,7 @@ class Signup extends React.Component {
     e.preventDefault()
 
     this.props.signup(this.state)
-    this.setState({
-      username: '',
-      password: ''
-    })
+    this.setState(initialState)
   }
 
   render() {
@@ -27,9 +25,8 @@ class Signup extends React.Component {
         <form className="form signup__form" onSubmit={this.handleSubmit}>
           <div className="header signup__header">Signup</div>
           <input
-            className="input signup__input"
+            className="input signup__input username"
             type="text"
-            id="name"
             placeholder="Enter your name"
             required
             value={this.state.username}
@@ -50,7 +47,6 @@ class Signup extends React.Component {
           <input
             className="input signup__input"
             type={this.props.showPassword ? "text" : "password" }
-            id="password"
             placeholder="Enter your password"
             required
             name="password"

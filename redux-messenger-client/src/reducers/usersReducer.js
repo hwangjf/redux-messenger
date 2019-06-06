@@ -4,19 +4,19 @@ import {
 
 const initialState = {
   user: null,
-  loggedIn: false,
+  isLoggedIn: false,
   authenticatingUser: false,
   failedLogin: false,
   error: null
 }
 
-const user = (state = initialState, action) => {
+const userReducer = (state = initialState, action) => {
   switch (action.payload) {
     case userConstants.LOGIN_SUCCESS:
       return {
         ...state,
         user: action.payload,
-        loggedIn: true,
+        isLoggedIn: true,
         authenticatingUser: false
       }
     case userConstants.LOGIN_REQUEST:
@@ -35,4 +35,5 @@ const user = (state = initialState, action) => {
   }
 }
 
-export default user
+export default userReducer
+

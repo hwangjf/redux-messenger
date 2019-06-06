@@ -1,8 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-const Home = () => {
-
+const Home = props => {
   return (
     <div className="home">
       <div className="home__container">

@@ -26,7 +26,6 @@ class Login extends React.Component {
           <input
             className="input login__input"
             type="text"
-            id="name"
             placeholder="Username"
             required
             name="username"
@@ -37,7 +36,6 @@ class Login extends React.Component {
           <input
             className="input login__input login__input__password"
             type={this.props.showPassword ? "text" : "password" }
-            id="password"
             placeholder="Password"
             required
             name="password"

@@ -8,14 +8,14 @@ export const login = (userInfo) => dispatch => {
   dispatch(loginRequest)
   
   UsersAdapter.login(userInfo)
-    .then(data => {
-      const { user, token } = data
-
+    .then(({ user, token }) => {
       Adapter.setToken(token)
+      
       dispatch(loginSuccess(user))
     })
     .catch(err => {
-      err.json().then(arg => {console.log(arg); debugger})
+      err.json()
+        .then(arg => {console.log(arg);})
 
       dispatch(loginFailure(err))
     })
@@ -25,18 +25,17 @@ export const autoLogin = () => dispatch => {
   dispatch(loginRequest) 
 
   UsersAdapter.autoLogin()
-    .then(data => {
-      debugger
-      dispatch(loginSuccess(data.user))
+    .then(({ user }) => {
+      console.log(user)
+      dispatch(loginSuccess(user))
     })
     .catch(err => {
-      debugger
       dispatch(loginFailure(err))
     })
 }
 
 export const signup = (userInfo) => dispatch => {
-  dispatch(loginRequest)
+  dispatch(signupRequest)
 
   UsersAdapter.signup(userInfo)
     .then(data => {

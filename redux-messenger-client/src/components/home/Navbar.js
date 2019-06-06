@@ -4,10 +4,10 @@ import { connect} from 'react-redux'
 
 import Login from './Login'
 
-import { logout } from './../../actions/users'
+import { logout } from '../../actions/users'
 
 const Navbar = (props) => {
-
+  console.log(props)
   return (
     <div className="navbar">
       <ul className="navbar__ul">
@@ -32,4 +32,11 @@ const Navbar = (props) => {
   )
 }
 
-export default connect(null, {logout})(Navbar)
+const mapStateToProps = ({userReducer: {user}}) => {
+  console.log(user)
+  return {
+
+  }
+}
+
+export default connect(mapStateToProps , { logout })(Navbar)
