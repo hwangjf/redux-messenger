@@ -65,7 +65,6 @@ class Messages extends Component {
           <input className="message__input input" placeholder="Type a message..." ></input>
           <img className="message__send-arrow-img" src="images/message-arrow.png" alt="send" />
         </div>
-  
       </div>
     )
   }
