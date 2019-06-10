@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { login } from '../../actions/users'
+import { login } from '../../actions/user'
+
+import { withRouter } from 'react-router'
 
 class Login extends React.Component {
   state = {
@@ -17,6 +19,8 @@ class Login extends React.Component {
       username: '',
       password: ''
     })
+
+    this.props.history.push('messages')
   }
 
   render(props) {
@@ -32,7 +36,6 @@ class Login extends React.Component {
             onChange={this.handleChange}
             value={this.state.username}
           />
-
           <input
             className="input login__input login__input__password"
             type={this.props.showPassword ? "text" : "password" }
@@ -44,8 +47,7 @@ class Login extends React.Component {
           />
           <img
           className="login__image--aria-eye"
-          src={
-            this.props.showPassword
+          src={this.props.showPassword
             ? "images/aria-eye-show.png"
             : "images/aria-eye-hide.png"
           }
@@ -59,6 +61,9 @@ class Login extends React.Component {
   }
 }
 
-const mapStateToProps = state => state
+const mapStateToProps = state => {
+  console.log(state)
+  return state
+}
 
-export default connect(mapStateToProps, { login })(Login)
+export default withRouter(connect(mapStateToProps, { login })(Login))

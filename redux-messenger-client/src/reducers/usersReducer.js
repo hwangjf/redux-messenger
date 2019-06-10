@@ -11,7 +11,7 @@ const initialState = {
 }
 
 const userReducer = (state = initialState, action) => {
-  switch (action.payload) {
+  switch (action.type) {
     case userConstants.LOGIN_SUCCESS:
       return {
         ...state,
@@ -30,6 +30,8 @@ const userReducer = (state = initialState, action) => {
         error: action.payload,
         authenticatingUser: false
       }
+    case userConstants.LOGOUT:
+      return initialState
     default:
       return state
   }

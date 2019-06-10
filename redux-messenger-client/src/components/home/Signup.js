@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { signup } from '../../actions/users'
+import { signup } from '../../actions/user'
 
 const initialState = {
   username: '',
@@ -17,6 +17,8 @@ class Signup extends React.Component {
 
     this.props.signup(this.state)
     this.setState(initialState)
+    
+    this.props.history.push('messages')
   }
 
   render() {
@@ -47,6 +49,7 @@ class Signup extends React.Component {
           <input
             className="input signup__input"
             type={this.props.showPassword ? "text" : "password" }
+
             placeholder="Enter your password"
             required
             name="password"

@@ -9,7 +9,7 @@ import Profile from './profile/Profile'
 import Messages from './messages/Messages'
 
 import { Adapter } from '../adapters'
-import { autoLogin } from '../actions/users';
+import { autoLogin } from '../actions/user';
 
 import '../sass/main.scss'
 
@@ -49,21 +49,18 @@ class App extends Component {
   }
 
   render() {
-    // we need to discuss how this stuff is being conditionally rendered.
-    // why is the render prop being used over the component
-    
     return (
       <React.Fragment>
         <Navbar
           handleClickLogin={this.handleClickLogin}
           handleClickPassword={this.handleClickPassword}
           showPassword={this.state.showPassword}
-          user={this.state.user}
+          user={this.props.user}
         />
         <Switch>
           <Route
             exact path="/"
-            render={props => <Home /> }
+            component={Home}
           />
           <Route
             path="/signup"
@@ -95,7 +92,6 @@ class App extends Component {
 }
 
 const mapStateToProps = ({userReducer: {user, isLoggedIn}}) => {
-  // console.log(state)
   // state.userReducer.user 
   // state.user
   // state.isLoading

@@ -5,6 +5,8 @@ class Adapter {
   
   static removeToken = () => localStorage.removeItem('token')
 
+  static logout = () => Adapter.removeToken()
+
   static setToken = (token) => localStorage.setItem('token', token)
 }
 
