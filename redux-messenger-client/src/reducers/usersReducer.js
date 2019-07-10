@@ -5,7 +5,7 @@ import {
 const initialState = {
   user: null,
   isLoggedIn: false,
-  authenticatingUser: false,
+  authenticatingUser: false, // loading  # => LOADING SPINNER
   failedLogin: false,
   error: null
 }

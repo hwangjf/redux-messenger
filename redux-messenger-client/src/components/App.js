@@ -7,6 +7,7 @@ import Home from './home/Home'
 import Signup from './home/Signup'
 import Profile from './profile/Profile'
 import Messages from './messages/Messages'
+import Contacts from './contacts/Contacts'
 
 import { Adapter } from '../adapters'
 import { autoLogin } from '../actions/user';
@@ -17,14 +18,13 @@ class App extends Component {
   state = {
     login: true,
     showPassword: false,
-    user: null,
     editProfile: false
   }
 
   componentDidMount() {
     if (Adapter.isLoggedIn()) {
       this.props.autoLogin()
-      this.props.history.push('messages')
+      this.props.history.push(this.props.history.location.pathname)
     }
   }
 
@@ -59,31 +59,41 @@ class App extends Component {
         />
         <Switch>
           <Route
-            exact path="/"
+            exact 
+            path="/"
             component={Home}
           />
           <Route
             path="/signup"
-            render={props =>
+            render={props =>(
               <Signup
+                {...props}
                 showPassword={this.state.showPassword}
                 handleClickPassword={this.handleClickPassword}
               />
-            }
+            )}
           />
           <Route
             path="/profile"
             render={props => (
               <Profile
+                {...props}
                 editProfile={this.state.editProfile}
                 handleClickEditProfile={this.handleClickEditProfile}
               />
-            )
-            }
+            )}
           />
           <Route
             path="/messages"
             render={props => <Messages /> }
+          />
+          <Route
+            path="/contacts"
+            render={props => <Contacts /> }
+          />
+          <Route
+            path="/"
+            render={()=><h1>404</h1>}
           />
         </Switch>
       </React.Fragment>
@@ -92,9 +102,7 @@ class App extends Component {
 }
 
 const mapStateToProps = ({userReducer: {user, isLoggedIn}}) => {
-  // state.userReducer.user 
-  // state.user
-  // state.isLoading
+
   return {
     user,
     isLoggedIn

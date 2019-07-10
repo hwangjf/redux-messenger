@@ -1,0 +1,6 @@
+// {
+//   "compilerOptions": {
+//     "baseUrl": "src"
+//   }
+// }
+// will start imports at the src file :hmmm
