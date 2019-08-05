@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
+import { withRouter, Route } from 'react-router-dom'
 
 import Navbar from './home/Navbar'
 import Home from './home/Home'
@@ -7,11 +7,13 @@ import Login from './home/Login'
 import Signup from './home/Signup'
 import Profile from './profile/Profile'
 import Messages from './messages/Messages'
+import Conversation from './Conversation';
 
-import '../sass/main.scss'
 import { Adapter } from '../adapters'
 import { connect } from 'react-redux'
 import { autoLogin } from '../actions/users';
+
+import '../sass/main.scss'
 
 class App extends Component {
   state = {
@@ -22,8 +24,14 @@ class App extends Component {
   }
 
   componentDidMount() {
-    if (Adapter.isLoggedIn()) {
+    if (Adapter.hasToken()) {
       this.props.autoLogin()
+        .then(data => {
+          this.props.history.push('/messages')
+        })
+      this.setState({login: false})
+    } else {
+      this.props.history.push('/')
     }
   }
 
@@ -32,10 +40,10 @@ class App extends Component {
   }
 
   handleClickClose = (event) => {
-    // this is gross
     let form = document.querySelector(".login__modal")
     let close = document.querySelector(".close")
-    if (event.target === form || event.target === close) {
+
+    if (event.target === form || event.target === close || event === "close") {
       this.setState ({ login: false })
     }
   }
@@ -51,52 +59,46 @@ class App extends Component {
   render() {
     // we need to discuss how this stuff is being conditionally rendered.
     // why is the render prop being used over the component
+
     return (
       <React.Fragment>
         <Navbar
           handleClickLogin={this.handleClickLogin}
-          user={this.state.user}
+          loggedIn={this.props.loggedIn}
         />
         <Route
           exact path="/"
-          render={props =>
-            <Home />
-          }
+          render={props => <Home />}
         />
         {
-          this.state.login
-        ? <Login
+          this.state.login && <Login
             handleClickClose={this.handleClickClose}
             showPassword={this.state.showPassword}
             handleClickPassword={this.handleClickPassword}
           />
-        : null
         }
         <Route
           path="/signup"
-          render={props =>
+          render={props => (
             <Signup
               login={this.state.login}
               showPassword={this.state.showPassword}
               handleClickPassword={this.handleClickPassword}
             />
-          }
+          )}
         />
         <Route
           path="/profile"
-          render={props =>
+          render={props => (
             <Profile
               editProfile={this.state.editProfile}
               handleClickEditProfile={this.handleClickEditProfile}
             />
-          }
+          )}
         />
         <Route
           path="/messages"
-          render={props =>
-            <Messages
-            />
-          }
+          render={props => <Messages><Conversation /></Messages>}
         />
       </React.Fragment>
     );
@@ -105,8 +107,9 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
+    loggedIn: state.user.loggedIn
   }
 }
 
-export default connect(mapStateToProps, { autoLogin })(App)
+export default withRouter(connect(mapStateToProps, { autoLogin })(App))

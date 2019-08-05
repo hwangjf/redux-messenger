@@ -2,7 +2,6 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 
 const Navbar = (props) => {
-
   return (
     <div className="navbar">
       <ul className="navbar__ul">
@@ -10,7 +9,7 @@ const Navbar = (props) => {
           <NavLink to="/">Logo</NavLink>
         </li>
       </ul>
-      {props.user
+      {props.loggedIn
         ?
         <div className="loggedin-navbar">
           <ul className="loggedin-navbar__ul">

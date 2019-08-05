@@ -6,25 +6,22 @@ import { Adapter } from '../adapters';
 
 export const login = (userInfo) => dispatch => {
   dispatch(loginRequest)
-  
   UsersAdapter.login(userInfo)
     .then(data => {
-      debugger
-      dispatch(loginSuccess(data.user))
+      dispatch(loginSuccess(data))
     })
     .catch(err => {
-      err.json().then(arg => {console.log(arg); debugger})
-
+      err.json().then(arg => console.log(arg) )
       dispatch(loginFailure(err))
     })
 }
 
 export const autoLogin = () => dispatch => {
   dispatch(loginRequest) 
-
-  UsersAdapter.autoLogin()
+  return UsersAdapter.autoLogin()
     .then(data => {
-      dispatch(loginSuccess(data.user))
+      dispatch(loginSuccess(data))
+      return data
     })
     .catch(err => {
       dispatch(loginFailure(err))
@@ -36,16 +33,20 @@ export const signup = (userInfo) => dispatch => {
 
   UsersAdapter.signup(userInfo)
     .then(data => {
-      dispatch(signupSuccess(data.user))
+      dispatch(signupSuccess(data))
     })
     .catch(err => {
-      dispatch(signupFailure(err))
+      dispatch(signupFailure(err)) 
     })
 }
 
 export const logout = () => {
   // removes token
   Adapter.logout()
+
+  return {
+    type: userConstants.LOGOUT
+  }
 }
 
 // login success

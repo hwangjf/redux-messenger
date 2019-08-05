@@ -32,6 +32,7 @@ class ApiAdapter {
         if (data.token) {
           Adapter.setToken(data.token)
         }
+        return data
       })
   }
 
@@ -47,6 +48,12 @@ class ApiAdapter {
         } else {
           throw res
         }
+      })
+      .then(data => {
+        if (data.token) {
+          Adapter.setToken(data.token)
+        }
+        return data
       })
   }
 

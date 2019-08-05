@@ -13,6 +13,7 @@ class Login extends React.Component {
   handleSubmit = e => {
     e.preventDefault()
 
+    this.props.handleClickClose('click')
     this.props.login(this.state)
     this.setState({
       username: '',

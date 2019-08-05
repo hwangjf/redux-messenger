@@ -7,19 +7,13 @@ const baseUrl = 'http://localhost:4000/api/v1'
 
 class UsersAdapter extends ApiAdapter {
  
-  // apiAdapter = apiAdapter
-  // constructor() {
-
-  // }
-
   signup = (userInfo) => {
     console.log(this)
     return this.post('/signup', {
       user: userInfo
     })
       .then(data => {
-        Adapter.setToken(data.token)
-        return data
+        return data.user
       })
   }
 
@@ -28,8 +22,7 @@ class UsersAdapter extends ApiAdapter {
       user: userInfo
     })
       .then(data => {
-        Adapter.setToken(data.token)
-        return data
+        return data.user
       })
   }
 
@@ -37,14 +30,12 @@ class UsersAdapter extends ApiAdapter {
     this.addAuthHeaders()
     return this.get('/auto_login')
       .then(data => {
-        Adapter.setToken(data.token)
-        return data
+        return data.user
       })
   }
 
   logout = () => {
     Adapter.logout()
-    return 'logged out'
   }
 
 }

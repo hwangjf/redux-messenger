@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { ActionCableConsumer } from 'react-actioncable-provider'
 
 class Conversation extends Component {
@@ -9,7 +10,7 @@ class Conversation extends Component {
           // frontend channel connects to the NAME OF THE CHANNEL CLASS
           // can add params through ex
           // {{channel: 'classname', params: paramsValue(example of user ) }}
-          channel={{channel: 'conversation'}}
+          channel={{channel: 'ConversationChannel'}}
           onReceived={(arg)=>{
             console.log('msg received', arg)
           }}
@@ -19,4 +20,4 @@ class Conversation extends Component {
   }
 }
 
-export default connect()(Conversation)
+export default connect(state=> state )(Conversation)
