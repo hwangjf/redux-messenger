@@ -30,6 +30,12 @@ const usersReducer = (state = initialState, action) => {
         error: action.payload,
         authenticatingUser: false
       }
+    case userConstants.LOGOUT:
+      return {
+        ...state,
+        user: null,
+        loggedIn: false
+      }
     default:
       return state
   }

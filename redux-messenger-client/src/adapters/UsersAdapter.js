@@ -38,6 +38,11 @@ class UsersAdapter extends ApiAdapter {
     Adapter.logout()
   }
 
+  getAllOtherUsers = () => {
+    this.addAuthHeaders()
+    return this.get('/users')
+  }
+
 }
 
 // users adapter that connects to user related backend routes
