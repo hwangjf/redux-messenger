@@ -30,7 +30,7 @@ class UsersAdapter extends ApiAdapter {
     this.addAuthHeaders()
     return this.get('/auto_login')
       .then(data => {
-        return data.user
+        return data
       })
   }
 
@@ -38,7 +38,7 @@ class UsersAdapter extends ApiAdapter {
     Adapter.logout()
   }
 
-  getAllOtherUsers = () => {
+  getOtherUsers = () => {
     this.addAuthHeaders()
     return this.get('/users')
   }

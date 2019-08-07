@@ -1,22 +1,36 @@
 import {
   userConstants
-} from '../types'
+} from '../../types'
 
 const initialState = {
   user: null,
   loggedIn: false,
   authenticatingUser: false,
   failedLogin: false,
-  error: null
+  error: null,
+  otherUsers: []
 }
 
+// const user = (state=null, action) => {
+//   switch(action.type) {
+//     case userConstants.LOGIN_SUCCESS:
+//       return action.user
+//     case userConstants.LOGOUT:
+//       return null
+//     default:
+//       return state
+//   }
+// }
+
 const usersReducer = (state = initialState, action) => {
+  console.log(action)
   switch (action.type) {
     case userConstants.LOGIN_SUCCESS:
       return {
         ...state,
-        user: action.payload,
+        user: action.user,
         loggedIn: true,
+        otherUsers: action.otherUsers,
         authenticatingUser: false
       }
     case userConstants.LOGIN_REQUEST:
@@ -27,15 +41,11 @@ const usersReducer = (state = initialState, action) => {
     case userConstants.LOGIN_FAILURE:
       return {
         ...state,
-        error: action.payload,
+        error: action.errors,
         authenticatingUser: false
       }
     case userConstants.LOGOUT:
-      return {
-        ...state,
-        user: null,
-        loggedIn: false
-      }
+      return initialState
     default:
       return state
   }

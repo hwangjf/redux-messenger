@@ -16,7 +16,7 @@ class Conversation extends Component {
   handleSubmit = e => {
     e.preventDefault()
     
-    fetch('http://localhost:4000/api/v1/messages', {
+    fetch('http://localhost:4000/api/v1/conversations', {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -31,13 +31,14 @@ class Conversation extends Component {
   }
 
   getAllUsers = () => {
-    UsersAdapter.getAllOtherUsers()
+    UsersAdapter.getOtherUsers()
       .then(data => {
         console.log(data)
       })
   }
 
   render() {
+    console.log(this.props)
     return (
       <div>
         <h1>Conversations</h1>
@@ -52,8 +53,8 @@ class Conversation extends Component {
           }}
         />
 
-        <div>
-
+        <div id="otherUsers">
+          {/* {this.props.} */}
         </div>
 
         <form onSubmit={this.handleSubmit} >
@@ -71,4 +72,4 @@ class Conversation extends Component {
   }
 }
 
-export default connect(state=> state)(Conversation)
+export default connect(state=>state)(Conversation)

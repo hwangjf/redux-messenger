@@ -108,7 +108,7 @@ class App extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-    loggedIn: state.user.loggedIn
+    loggedIn: !!state.user
   }
 }
 

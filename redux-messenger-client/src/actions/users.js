@@ -50,9 +50,9 @@ export const logout = () => {
 }
 
 // login success
-const loginSuccess = (userInfo) => ({
+const loginSuccess = (data) => ({
   type: userConstants.LOGIN_SUCCESS,
-  payload: userInfo
+  ...data
 })
 
 // beginning login async action
