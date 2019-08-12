@@ -1,7 +1,7 @@
 import user from './user'
-import otherUsers from './otherUsers'
+import users from './users'
 
 export default {
   user,
-  otherUsers
+  users
 }

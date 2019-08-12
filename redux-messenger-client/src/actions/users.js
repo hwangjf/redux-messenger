@@ -4,6 +4,13 @@ import {
 } from '../types'
 import { Adapter } from '../adapters';
 
+export const getUsers = () => dispatch => {
+  UsersAdapter.getUsers()
+    .then(data => {
+      console.log(data)
+    })
+}
+
 export const login = (userInfo) => dispatch => {
   dispatch(loginRequest)
   UsersAdapter.login(userInfo)
@@ -73,9 +80,9 @@ const signupSuccess = (userInfo) => ({
 })
 
 // beginning signup async action
-const signupRequest = {
-  type: userConstants.SIGNUP_REQUEST
-}
+// const signupRequest = {
+//   type: userConstants.SIGNUP_REQUEST
+// }
 
 // signup failure error
 const signupFailure = err => ({

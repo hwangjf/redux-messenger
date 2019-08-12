@@ -11,7 +11,8 @@ import Conversation from './Conversation';
 
 import { Adapter } from '../adapters'
 import { connect } from 'react-redux'
-import { autoLogin } from '../actions/users';
+
+import { autoLogin, getUsers } from '../actions/users';
 
 import '../sass/main.scss'
 
@@ -27,6 +28,7 @@ class App extends Component {
     if (Adapter.hasToken()) {
       this.props.autoLogin()
         .then(data => {
+          this.props.getUsers()
           this.props.history.push('/messages')
         })
       this.setState({login: false})
@@ -112,4 +114,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default withRouter(connect(mapStateToProps, { autoLogin })(App))
+export default withRouter(connect(mapStateToProps, { autoLogin, getUsers })(App))

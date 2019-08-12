@@ -38,7 +38,7 @@ class UsersAdapter extends ApiAdapter {
     Adapter.logout()
   }
 
-  getOtherUsers = () => {
+  getUsers = () => {
     this.addAuthHeaders()
     return this.get('/users')
   }
