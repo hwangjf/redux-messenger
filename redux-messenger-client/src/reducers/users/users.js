@@ -6,8 +6,8 @@ const initialState = []
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case userConstants.LOGIN_SUCCESS:
-      const { users } = action
+    case userConstants.GET_USERS:
+      const users = action.payload
       return users
     case userConstants.LOGOUT:
       return initialState

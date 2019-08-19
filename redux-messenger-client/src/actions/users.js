@@ -7,7 +7,10 @@ import { Adapter } from '../adapters';
 export const getUsers = () => dispatch => {
   UsersAdapter.getUsers()
     .then(data => {
-      console.log(data)
+      dispatch({
+        type: userConstants.GET_USERS,
+        payload: data
+      })
     })
 }
 
@@ -63,9 +66,9 @@ const loginSuccess = (data) => ({
 })
 
 // beginning login async action
-const loginRequest = {
+const loginRequest = ({
   type: userConstants.LOGIN_REQUEST
-}
+})
 
 // login failure error
 const loginFailure = err => ({

@@ -10,4 +10,5 @@ export const userConstants = {
   SIGNUP_SUCCESS: 'SIGNUP_SUCCESS',
   SIGNUP_FAILURE: 'SIGNUP_FAILURE',
 
+  GET_USERS: 'GET_USERS'
 }

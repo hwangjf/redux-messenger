@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
+import uuid from 'uuid'
 import { connect } from 'react-redux'
 import { ActionCableConsumer } from 'react-actioncable-provider'
-import { UsersAdapter } from '../adapters';
+// import { UsersAdapter } from '../adapters';
+
+import UserContact from './UserContact'
 
 class Conversation extends Component {
 
@@ -30,12 +33,12 @@ class Conversation extends Component {
       })
   }
 
-  getAllUsers = () => {
-    UsersAdapter.getOtherUsers()
-      .then(data => {
-        console.log(data)
-      })
-  }
+  // getAllUsers = () => {
+  //   UsersAdapter.getUsers()
+  //     .then(data => {
+  //       console.log(data)
+  //     })
+  // }
 
   render() {
     console.log(this.props)
@@ -53,8 +56,11 @@ class Conversation extends Component {
           }}
         />
 
-        <div id="otherUsers">
-          {/* {this.props.} */}
+        <div >
+          {this.props.users.map(user => {
+            return <UserContact key={ uuid() } {...user} />
+          })}
+          
         </div>
 
         <form onSubmit={this.handleSubmit} >
@@ -62,14 +68,20 @@ class Conversation extends Component {
             type="text" 
             value={this.state.text} 
             onChange={this.handleChange} 
-            name="text" 
+            name="text"
           />
         </form>
 
-        <button onClick={this.getAllUsers} >New Conversation</button>
+        <button onClick={this.getAllUsers}>New Conversation</button>
       </div>
     )
   }
 }
 
-export default connect(state=>state)(Conversation)
+const mapStateToProps = (state) => ({
+  user: state.user,
+  users: state.users.filter(user => user.id !== state.user.id)
+})
+
+
+export default connect(mapStateToProps)(Conversation)
