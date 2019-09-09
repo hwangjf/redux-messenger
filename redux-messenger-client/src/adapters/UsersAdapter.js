@@ -1,7 +1,6 @@
-import ApiAdapter from './_apiAdapter'
+import ApiAdapter from './ApiAdapter'
 import { Adapter } from '.';
 
-const baseUrl = 'http://localhost:4000/api/v1'
 // TODO: move baseUrl to env.process.
 // const apiAdapter = new ApiAdapter(baseUrl)
 
@@ -35,18 +34,16 @@ class UsersAdapter extends ApiAdapter {
   }
 
   logout = () => {
-    Adapter.logout()
+    Adapter.removeToken()
   }
 
   getUsers = () => {
     this.addAuthHeaders()
     return this.get('/users')
   }
-
 }
 
 // users adapter that connects to user related backend routes
-const usersAdapter = (new UsersAdapter(baseUrl))
-console.log(usersAdapter)
+const usersAdapter = new UsersAdapter()
 
 export default usersAdapter

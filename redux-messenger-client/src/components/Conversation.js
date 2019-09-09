@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
-import uuid from 'uuid'
 import { connect } from 'react-redux'
+import uuid from 'uuid'
+
 import { ActionCableConsumer } from 'react-actioncable-provider'
-// import { UsersAdapter } from '../adapters';
 
 import UserContact from './UserContact'
+
+import { createConversation } from '../actions/conversation'
 
 class Conversation extends Component {
 
   state = {
-    text: ''
+    text: ''  
   }
 
   handleChange = e => {
@@ -33,12 +35,10 @@ class Conversation extends Component {
       })
   }
 
-  // getAllUsers = () => {
-  //   UsersAdapter.getUsers()
-  //     .then(data => {
-  //       console.log(data)
-  //     })
-  // }
+  newConvo = (userId) => () => {
+    console.log('hi')
+    this.props.createConversation('hello')
+  }
 
   render() {
     console.log(this.props)
@@ -58,7 +58,7 @@ class Conversation extends Component {
 
         <div >
           {this.props.users.map(user => {
-            return <UserContact key={ uuid() } {...user} />
+            return <UserContact key={uuid()} {...user} newConvo={this.newConvo(user.id)} />
           })}
           
         </div>
@@ -84,4 +84,4 @@ const mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps)(Conversation)
+export default connect(mapStateToProps, { createConversation })(Conversation)

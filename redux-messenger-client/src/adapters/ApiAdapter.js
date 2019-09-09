@@ -1,8 +1,10 @@
-import Adapter from "./adapter"
+import Adapter from "./Adapter"
+
+const BASE_URL = 'http://localhost:4000/api/v1'
 
 class ApiAdapter {
-  constructor(baseUrl) {
-    this.baseUrl = baseUrl
+  constructor() {
+    this.baseUrl = BASE_URL
     this.headers = {
       "Content-type": "application/json",
       "Accept": "application/json"
@@ -43,11 +45,13 @@ class ApiAdapter {
       body: JSON.stringify(body)
     })
       .then(res => {
-        if (res.ok) {
-          return res.json()
-        } else {
-          throw res
-        }
+        debugger
+        // if (res.ok) {
+        //   return res.json()
+        // } else {
+        //   throw res
+        // }
+        return res.json()
       })
       .then(data => {
         if (data.token) {

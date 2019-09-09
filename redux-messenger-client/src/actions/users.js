@@ -1,8 +1,7 @@
-import UsersAdapter from '../adapters/UsersAdapter'
+import { UsersAdapter } from '../adapters'
 import {
   userConstants
 } from '../types'
-import { Adapter } from '../adapters';
 
 export const getUsers = () => dispatch => {
   UsersAdapter.getUsers()
@@ -21,8 +20,8 @@ export const login = (userInfo) => dispatch => {
       dispatch(loginSuccess(data))
     })
     .catch(err => {
-      err.json().then(arg => console.log(arg) )
-      dispatch(loginFailure(err))
+      // err.json().then(arg => console.log(arg) )
+      // dispatch(loginFailure(err))
     })
 }
 
@@ -52,7 +51,7 @@ export const signup = (userInfo) => dispatch => {
 
 export const logout = () => {
   // removes token
-  Adapter.logout()
+  UsersAdapter.logout()
 
   return {
     type: userConstants.LOGOUT

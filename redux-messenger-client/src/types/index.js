@@ -12,3 +12,7 @@ export const userConstants = {
 
   GET_USERS: 'GET_USERS'
 }
+
+export const conversationConstants = {
+  CREATE_CONVERSATION: 'CREATE_CONVERSATION'
+}
