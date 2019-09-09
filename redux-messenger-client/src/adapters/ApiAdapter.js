@@ -45,13 +45,11 @@ class ApiAdapter {
       body: JSON.stringify(body)
     })
       .then(res => {
-        debugger
-        // if (res.ok) {
-        //   return res.json()
-        // } else {
-        //   throw res
-        // }
-        return res.json()
+        if (res.ok) {
+          return res.json()
+        } else {
+          throw res
+        }
       })
       .then(data => {
         if (data.token) {
@@ -76,13 +74,5 @@ class ApiAdapter {
       })
   }
 }
-
-// const ApiAdapter = new ApiAdapter(baseUrl)
-
-// ApiAdapter.get('/login')
-//   .then(data => {
-//     // {user: whatever}
-//   })
-// export const hello = new ApiAdapter(baseUrl)
 
 export default ApiAdapter

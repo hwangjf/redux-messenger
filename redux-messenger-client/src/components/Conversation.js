@@ -6,12 +6,16 @@ import { ActionCableConsumer } from 'react-actioncable-provider'
 
 import UserContact from './UserContact'
 
-import { createConversation } from '../actions/conversation'
+import { createConversation, getConversations } from '../actions/conversation'
 
 class Conversation extends Component {
 
   state = {
-    text: ''  
+    title: ''
+  }
+
+  componentDidMount() {
+    this.props.getConversations()
   }
 
   handleChange = e => {
@@ -21,22 +25,12 @@ class Conversation extends Component {
   handleSubmit = e => {
     e.preventDefault()
     
-    fetch('http://localhost:4000/api/v1/conversations', {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify(this.state)
-    })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data)
-      })
+    // TODO: REFACTOR AWAY FETCH
+    this.props.createConversation(this.state.title)
   }
 
-  newConvo = (userId) => () => {
-    console.log('hi')
+  newConvo = (userId) => (e) => {
+    console.log(userId)
     this.props.createConversation('hello')
   }
 
@@ -60,7 +54,6 @@ class Conversation extends Component {
           {this.props.users.map(user => {
             return <UserContact key={uuid()} {...user} newConvo={this.newConvo(user.id)} />
           })}
-          
         </div>
 
         <form onSubmit={this.handleSubmit} >
@@ -78,10 +71,13 @@ class Conversation extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  user: state.user,
-  users: state.users.filter(user => user.id !== state.user.id)
-})
+const mapStateToProps = (state) => {
+  console.log(state)
+  return {
+    user: state.user,
+    users: state.users.filter(user => user.id !== state.user.id)
+  }
+}
 
 
-export default connect(mapStateToProps, { createConversation })(Conversation)
+export default connect(mapStateToProps, { createConversation, getConversations })(Conversation)

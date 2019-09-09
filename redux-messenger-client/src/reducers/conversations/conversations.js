@@ -1,14 +1,19 @@
 import { conversationConstants } from '../../types'
 
-const initialState = []
+const initialState = {
+  current: null,
+  all: []
+}
 
-export const conversations = (state=initialState, action) => {
+export default (state=initialState, action) => {
+  console.log(action)
   switch (action.type) {
-    case conversationConstants.CREATE_CONVERSATION:
-      
-      break;
-  
+    case conversationConstants.ALL:
+      debugger
+      return {...state, all: action.payload}
+    case conversationConstants.SET_CURRENT:
+      return {...state, current: action.payload}
     default:
-      break;
+      return state
   }
 }

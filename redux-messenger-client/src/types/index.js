@@ -14,5 +14,8 @@ export const userConstants = {
 }
 
 export const conversationConstants = {
-  CREATE_CONVERSATION: 'CREATE_CONVERSATION'
+  CREATE: 'CREATE',
+  SET_CURRENT: 'SET_CURRENT',
+  ALL: 'ALL',
+  GET_CONVERSATIONS: 'GET_CONVERSATIONS'
 }

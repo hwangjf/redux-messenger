@@ -6,7 +6,15 @@ class ConversationsAdapter extends ApiAdapter {
     this.addAuthHeaders()
     return this.post('/conversations', { title })
       .then(data => {
-        debugger
+        console.log(data)
+        return data
+      })
+  }
+
+  getConversations = () => {
+    this.addAuthHeaders()
+    return this.get('/conversations')
+      .then(data => {
         console.log(data)
         return data
       })
