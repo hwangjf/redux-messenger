@@ -4,7 +4,7 @@ const UserContact = (props) => {
   console.log(props)
   const { username } = props
   return (
-    <div onClick={props.newConvo}>
+    <div onClick={()=>props.newConvo}>
       {
         username
       }

@@ -7,7 +7,7 @@ export const createConversation = (title) => dispatch => {
   ConversationsAdapter.createConversation(title)
     .then(data => {
       console.log(data)
-      dispatch(setCurrent(data.id))
+      dispatch(setCurrentConvo(data.id))
     })
 }
 
@@ -18,11 +18,10 @@ export const getConversations = () => dispatch => {
         type: conversationConstants.ALL,
         payload: data
       })
-      console.log(data)
     })
 }
 
-const setCurrent = (convoId) => {
+export const setCurrentConvo = (convoId) => {
   return ({
     type: conversationConstants.SET_CURRENT,
     payload: convoId

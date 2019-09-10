@@ -29,7 +29,7 @@ class App extends Component {
       this.props.autoLogin()
         .then(data => {
           this.props.getUsers()
-          this.props.history.push('/messages')
+          this.props.history.push('/conversations')
         })
       this.setState({login: false})
     } else {
@@ -59,9 +59,6 @@ class App extends Component {
   }
 
   render() {
-    // we need to discuss how this stuff is being conditionally rendered.
-    // why is the render prop being used over the component
-
     return (
       <React.Fragment>
         <Navbar
@@ -101,6 +98,10 @@ class App extends Component {
         <Route
           path="/messages"
           render={props => <Messages><Conversation /></Messages>}
+        />
+        <Route
+          path="/conversations"
+          render={props => <Conversation />}
         />
       </React.Fragment>
     );

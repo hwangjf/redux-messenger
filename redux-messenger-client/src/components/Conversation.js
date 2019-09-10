@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import uuid from 'uuid'
-
 import { ActionCableConsumer } from 'react-actioncable-provider'
-
 import UserContact from './UserContact'
 
 import { createConversation, getConversations } from '../actions/conversation'
+import ConversationContainer from './conversation/ConversationContainer';
 
 class Conversation extends Component {
 
@@ -24,8 +23,7 @@ class Conversation extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    
-    // TODO: REFACTOR AWAY FETCH
+      
     this.props.createConversation(this.state.title)
   }
 
@@ -50,22 +48,28 @@ class Conversation extends Component {
           }}
         />
 
-        <div >
+        <div>
+          ALL USERS
           {this.props.users.map(user => {
             return <UserContact key={uuid()} {...user} newConvo={this.newConvo(user.id)} />
           })}
         </div>
-
+        <br/>
+        
+        CREATE CONVERSATION
         <form onSubmit={this.handleSubmit} >
           <input 
             type="text" 
-            value={this.state.text} 
+            value={this.state.title} 
             onChange={this.handleChange} 
-            name="text"
+            name="title"
           />
         </form>
 
         <button onClick={this.getAllUsers}>New Conversation</button>
+        
+        <br />
+        <ConversationContainer conversations={this.props.conversations} />
       </div>
     )
   }
@@ -75,7 +79,8 @@ const mapStateToProps = (state) => {
   console.log(state)
   return {
     user: state.user,
-    users: state.users.filter(user => user.id !== state.user.id)
+    users: state.users.filter(user => user.id !== state.user.id),
+    conversations: state.conversations.all
   }
 }
 
