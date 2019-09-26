@@ -24,6 +24,7 @@ const initialState = {
 
 const usersReducer = (state = initialState, action) => {
   console.log(action)
+  debugger
   switch (action.type) {
     case userConstants.LOGIN_SUCCESS:
       return {

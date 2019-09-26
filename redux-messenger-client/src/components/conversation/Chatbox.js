@@ -3,12 +3,17 @@ import { connect } from 'react-redux'
 import uuid from 'uuid'
 import Message from '../messages/Message';
 import { createMessage, messageReceived } from '../../actions/message'
+// import { getConversation } from '../../actions/conversation'
 import { ActionCableConsumer } from 'react-actioncable-provider'
 
 class Chatbox extends Component {
   state = {
     text: ''
   }
+
+  // componentDidMount() {
+  //   this.props.currentConvo && this.props.getConversation(this.props.currentConvo.id)
+  // }
 
   handleChange = e => this.setState({[e.target.name]: e.target.value}, ()=>console.log(this.state))
 

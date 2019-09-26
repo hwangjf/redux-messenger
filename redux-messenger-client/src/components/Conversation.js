@@ -76,7 +76,6 @@ class Conversation extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     user: state.user,
     users: state.users.filter(user => user.id !== state.user.id),

@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { logout } from '../../actions/users'
 
 const Navbar = (props) => {
+  console.log('NAVVV', props)
   return (
     <div className="navbar">
       <ul className="navbar__ul">

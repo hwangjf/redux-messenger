@@ -21,7 +21,7 @@ class UsersAdapter extends ApiAdapter {
       user: userInfo
     })
       .then(data => {
-        return data.user
+        return data
       })
   }
 

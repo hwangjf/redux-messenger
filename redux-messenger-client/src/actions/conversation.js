@@ -27,3 +27,7 @@ export const setCurrentConvo = (convoId) => {
     payload: convoId
   })
 }
+
+// export const getConversation = (convoId) => {
+
+// }

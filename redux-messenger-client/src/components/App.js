@@ -74,6 +74,7 @@ class App extends Component {
             handleClickClose={this.handleClickClose}
             showPassword={this.state.showPassword}
             handleClickPassword={this.handleClickPassword}
+            history={this.props.history}
           />
         }
         <Route
