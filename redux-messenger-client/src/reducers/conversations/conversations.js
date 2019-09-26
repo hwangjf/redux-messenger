@@ -1,4 +1,7 @@
-import { conversationConstants } from '../../types'
+import {
+  conversationConstants,
+  messageConstants
+} from '../../types'
 
 const initialState = {
   current: null,
@@ -11,6 +14,11 @@ export default (state=initialState, action) => {
       return {...state, all: action.payload}
     case conversationConstants.SET_CURRENT:
       return {...state, current: action.payload}
+    case messageConstants.RECEIVED:
+      return {
+        ...state,
+        all: state.all.map(convo => convo.id === action.payload.conversation_id ? { ...convo, messages: [...convo.messages, action.payload] } : convo)
+      }
     default:
       return state
   }

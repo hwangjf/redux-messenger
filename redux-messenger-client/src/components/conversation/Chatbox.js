@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import uuid from 'uuid'
 import Message from '../messages/Message';
-import { createMessage } from '../../actions/message'
+import { createMessage, messageReceived } from '../../actions/message'
+import { ActionCableConsumer } from 'react-actioncable-provider'
 
 class Chatbox extends Component {
   state = {
@@ -18,11 +19,27 @@ class Chatbox extends Component {
     this.setState({text: ''})
   }
 
-  render() {console.log(this.props)
+  render() {
+    console.log(this.props)
     return (
       <div>
         Chatbox
         
+        {
+          this.props.currentConvo && (
+          <ActionCableConsumer
+            // frontend channel connects to the NAME OF THE CHANNEL CLASS
+            // can add params through ex
+            // {{channel: 'classname', params: paramsValue(example of user ) }}
+            channel={{ channel: 'MessageChannel', conversation_id: this.props.currentConvo.id}}
+            onReceived={(arg) => {
+              console.log('msg received', arg)
+
+              this.props.messageReceived(arg)
+              // this.props.createMessage(arg)
+            }}
+          />)
+        }
         <h1>
           {
             this.props.currentConvo && this.props.currentConvo.title
@@ -53,4 +70,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { createMessage })(Chatbox)
+export default connect(mapStateToProps, { createMessage, messageReceived })(Chatbox)

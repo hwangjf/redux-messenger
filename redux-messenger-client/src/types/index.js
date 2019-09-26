@@ -19,3 +19,8 @@ export const conversationConstants = {
   ALL: 'ALL',
   GET_CONVERSATIONS: 'GET_CONVERSATIONS'
 }
+
+export const messageConstants = {
+  // CREATE: 'CREATE',
+  RECEIVED: 'RECEIVED'
+}

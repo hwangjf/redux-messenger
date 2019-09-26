@@ -6,10 +6,11 @@ class MessagesAdapter extends ApiAdapter {
     this.addAuthHeaders()
     return this.post('/messages', message)
       .then(data => {
-        console.log(data)
+        // console.log(data)
         return data
       })
   }
+
 
 }
 export default new MessagesAdapter()

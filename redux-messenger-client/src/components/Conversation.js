@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import uuid from 'uuid'
 import { ActionCableConsumer } from 'react-actioncable-provider'
 import UserContact from './UserContact'
+import ConversationContainer from './conversation/ConversationContainer';
 
 import { createConversation, getConversations } from '../actions/conversation'
-import ConversationContainer from './conversation/ConversationContainer';
 
 class Conversation extends Component {
 
