@@ -14,13 +14,14 @@ class Login extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault()
+
+    this.props.handleClickClose('close')
     this.props.login(this.state)
     this.setState({
       username: '',
       password: ''
     })
-
-    this.props.history.push('messages')
+    this.props.history.push('/conversations')
   }
 
   render(props) {

@@ -1,7 +1,11 @@
-import Adapter from './adapter'
+import Adapter from './Adapter'
 import UsersAdapter from './UsersAdapter'
+import ConversationsAdapter from './ConversationsAdapter'
+import MessagesAdapter from './MessagesAdapter'
 
 export {
   Adapter,
-  UsersAdapter
+  UsersAdapter,
+  ConversationsAdapter,
+  MessagesAdapter
 }

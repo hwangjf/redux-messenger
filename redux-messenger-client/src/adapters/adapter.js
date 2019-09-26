@@ -1,5 +1,5 @@
 class Adapter {
-  static isLoggedIn = () => !!Adapter.getToken()
+  static hasToken = () => !!Adapter.getToken()
 
   static getToken = () => localStorage.getItem('token')
   

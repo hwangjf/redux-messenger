@@ -6,7 +6,7 @@
     "install": "^0.12.2",
     "npm": "^6.9.0",
     "react": "^16.8.6",
-    "react-actioncable-provider": "^2.0.0",
+    "react-actioncable-provider": "github:ihollander/react-actioncable-provider",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.2",
     "react-router": "^5.0.0",
