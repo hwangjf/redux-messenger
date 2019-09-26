@@ -7,6 +7,7 @@ import Signup from './home/Signup'
 import Profile from './profile/Profile'
 import Messages from './messages/Messages'
 import Conversation from './Conversation';
+import Login from './home/Login';
 
 import { Adapter } from '../adapters'
 import { connect } from 'react-redux'
@@ -107,8 +108,7 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({userReducer: {user, isLoggedIn}}) => {
-
+const mapStateToProps = state => {
   return {
     user: state.user,
     loggedIn: !!state.user
