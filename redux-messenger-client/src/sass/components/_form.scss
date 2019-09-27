@@ -1,28 +1,28 @@
-.form {
-    border-radius: 3px;
-    background-color: rgba($color-white, 0.9);
-    box-shadow: $boxshadow;
-    text-align: center;
-}
+// .form {
+//     border-radius: 3px;
+//     background-color: rgba($color-white, 0.9);
+//     box-shadow: $boxshadow;
+//     text-align: center;
+// }
 
-.input {
-    -webkit-appearance: none;
-    border-radius: 3px;
-    border: 0.5px rgba(grey, .3) solid;
-    padding: .75rem 2rem .75rem 1rem;;
-    display: block;
-    font-family: inherit;
-    font-size: inherit;
+// .input {
+//     -webkit-appearance: none;
+//     border-radius: 3px;
+//     border: 0.5px rgba(grey, .3) solid;
+//     padding: .75rem 2rem .75rem 1rem;;
+//     display: block;
+//     font-family: inherit;
+//     font-size: inherit;
 
-    &:focus {
-        outline: none;
-        border: 0.5px $color-primary solid;
-    }
-}
+//     &:focus {
+//         outline: none;
+//         border: 0.5px $color-primary solid;
+//     }
+// }
 
-@media only screen and (max-width: 600px) {
-    .form {
-      background-color: rgba($color-white, 0);
-      box-shadow: none;
-    }
-}
+// @media only screen and (max-width: 600px) {
+//     .form {
+//       background-color: rgba($color-white, 0);
+//       box-shadow: none;
+//     }
+// }

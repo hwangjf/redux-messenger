@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { withRouter, Route } from 'react-router-dom'
 
 import Navbar from './home/Navbar'
-import Home from './home/Home'
 import Signup from './home/Signup'
 import Profile from './profile/Profile'
 import Messages from './messages/Messages'
@@ -66,7 +65,6 @@ class App extends Component {
         />
         <Route
           exact path="/"
-          render={props => <Home />}
         />
         {
           this.state.login && <Login
