@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ConversationList from './ConversationList';
 import Chatbox from './Chatbox';
+import Contacts from '../contacts/Contacts';
 
 class ConversationContainer extends Component {
   
@@ -12,6 +13,7 @@ class ConversationContainer extends Component {
         ConversationContainer
 
         <br/>
+        <Contacts />
         <ConversationList />
         <Chatbox />
       </div>

@@ -99,7 +99,7 @@ class App extends Component {
         />
         <Route
           path="/conversations"
-          render={props => <Conversation />}
+          component={Conversation}
         />
       </React.Fragment>
     );

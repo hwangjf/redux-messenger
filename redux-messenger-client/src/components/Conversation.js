@@ -37,7 +37,6 @@ class Conversation extends Component {
     return (
       <div>
         <h1>Conversations</h1>
-
         <ActionCableConsumer 
           // frontend channel connects to the NAME OF THE CHANNEL CLASS
           // can add params through ex
@@ -47,6 +46,15 @@ class Conversation extends Component {
             console.log('msg received', arg)
           }}
         />
+
+        <div style={{border: 'blue 1px solid'}}>
+          FRIENDS
+          {
+            this.props.user && this.props.user.friends.map(user => {
+              return <UserContact key={uuid()} {...user} newConvo={this.newConvo(user.id)} />
+            })
+          }
+        </div>
 
         <div>
           ALL USERS

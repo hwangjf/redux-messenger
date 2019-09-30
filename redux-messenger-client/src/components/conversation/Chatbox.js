@@ -15,7 +15,7 @@ class Chatbox extends Component {
   //   this.props.currentConvo && this.props.getConversation(this.props.currentConvo.id)
   // }
 
-  handleChange = e => this.setState({[e.target.name]: e.target.value}, ()=>console.log(this.state))
+  handleChange = e => this.setState({[e.target.name]: e.target.value})
 
   handleSubmit = e => {
     e.preventDefault()
@@ -56,6 +56,7 @@ class Chatbox extends Component {
             return <Message key={uuid()} {...message} />
           })
         }
+        
 
         <br/>
         <br/>
@@ -64,14 +65,36 @@ class Chatbox extends Component {
         <form onSubmit={this.handleSubmit}>
           <input type="text" name="text" value={this.state.text} onChange={this.handleChange} />
         </form>
+
+
+        <div>
+          Users in Chatroom
+          {
+            this.props.currentConvo && this.props.currentConvo.users.map(user => {
+              return <div key={`user-${user.id}`}>{user.username}</div>
+            })
+          }
+        </div>
+        <div>
+          Users NOT in chatroom - click to invite
+          {
+            this.props.currentConvo && this.props.users.filter(user => {
+              return !this.props.currentConvo.users.map(u=>u.id).includes(user.id)
+            }).map(user => {
+              return <div onClick={()=>console.log('invite user funcitonality')}>{user.username}</div>
+            })
+          }
+        </div>
       </div>
     )
   }
 }
 const mapStateToProps = state => {
+  console.log(state)
   return {
     currentConvo: state.conversations.current && state.conversations.all.find(convo => convo.id === state.conversations.current),
-    messages: state.conversations.current && state.conversations.all.find(convo => convo.id === state.conversations.current).messages
+    messages: state.conversations.current && state.conversations.all.find(convo => convo.id === state.conversations.current).messages,
+    users: state.users
   }
 }
 
