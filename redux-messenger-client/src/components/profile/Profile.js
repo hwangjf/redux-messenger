@@ -1,5 +1,5 @@
 import React from 'react'
-// import withAuth from '../hocs/withAuth'
+import withAuth from '../hocs/withAuth'
 import { connect } from 'react-redux'
 import { addFriend } from '../../actions/user'
 
@@ -18,16 +18,14 @@ class Profile extends React.Component {
         </div>
         <div className="profile">
         {
-          this.props.user 
-            ? this.props.user.friends.map(u => u.id).includes(this.props.userId) 
-              ? <div>
-                  Already your friend
-                </div>
-              : <>
-                  <h1>CLICK BELOW TO ADD FRIEND</h1>
-                  <button onClick={()=>this.props.addFriend(this.props.userId)} >ADD FRIEND</button>
-                </>
-            : null
+          this.props.user && this.props.user.friends.map(u => u.id).includes(this.props.userId) 
+            ? <div>
+                Already your friend
+              </div>
+            : <>
+                <h1>CLICK BELOW TO ADD FRIEND</h1>
+                <button onClick={()=>this.props.addFriend(this.props.userId)} >ADD FRIEND</button>
+              </>
         }
         
         <div className="profile__image--container">
@@ -83,4 +81,4 @@ class Profile extends React.Component {
   }
 }
 
-export default connect(null,{ addFriend })(Profile)
+export default withAuth(connect(null, { addFriend })(Profile))

@@ -17,16 +17,19 @@ const withAuth = (WrappedComponent) => {
     render() {
       if (Adapter.isLoggedIn() && this.props.isLoggedIn) {
         // has token and successfully logged in
-        return <WrappedComponent />
+        return <WrappedComponent {...this.props} />
       } else if (Adapter.isLoggedIn() && !this.props.isLoggedIn) {
         // has token and attempting log in
-        // TODO:replace with loading spinner
-        
         return <ClipLoader />
       } else {
         // not logged in can redirect or do something else
         return <Redirect to="/" />
       }
+    }
+
+    componentWillUnmount() {
+      console.log('hi')
+      localStorage.setItem('is','done')
     }
   }
 
@@ -36,7 +39,7 @@ const withAuth = (WrappedComponent) => {
     }
   }
 
-  return withRouter(connect(mapStateToProps, { autoLogin })(AuthorizedComponent))
+  return connect(mapStateToProps, { autoLogin })(AuthorizedComponent)
 } 
 
 export default withAuth;
