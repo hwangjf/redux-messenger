@@ -4,12 +4,13 @@ import { autoLogin } from '../../actions/user'
 import { Adapter } from '../../adapters';
 import { Redirect } from 'react-router-dom'
 import { withRouter } from 'react-router'
+import ClipLoader from 'react-spinners/ClipLoader';
 
 const withAuth = (WrappedComponent) => {
   class AuthorizedComponent extends Component {
     componentDidMount() {
       if (Adapter.isLoggedIn() && !this.props.isLoggedIn) {
-        this.props.autoLogin()
+        // this.props.autoLogin()
       }
     }
 
@@ -17,10 +18,11 @@ const withAuth = (WrappedComponent) => {
       if (Adapter.isLoggedIn() && this.props.isLoggedIn) {
         // has token and successfully logged in
         return <WrappedComponent />
-      } else if (Adapter.isLoggedIn() && (this.props.isLoading || !this.props.isLoggedIn)) {
+      } else if (Adapter.isLoggedIn() && !this.props.isLoggedIn) {
         // has token and attempting log in
         // TODO:replace with loading spinner
-        return <div>Loading</div>
+        
+        return <ClipLoader />
       } else {
         // not logged in can redirect or do something else
         return <Redirect to="/" />
@@ -29,7 +31,6 @@ const withAuth = (WrappedComponent) => {
   }
 
   const mapStateToProps = (state) => {
-    console.log(state)
     return {
       isLoggedIn: !!state.user
     }

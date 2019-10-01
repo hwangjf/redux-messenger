@@ -6,6 +6,7 @@ import UserContact from './UserContact'
 import ConversationContainer from './conversation/ConversationContainer';
 
 import { createConversation, getConversations } from '../actions/conversation'
+import withAuth from './hocs/withAuth'
 
 class Conversation extends Component {
 
@@ -81,10 +82,6 @@ class Conversation extends Component {
       </div>
     )
   }
-
-  // componentWillUnmount() {
-  //   localStorage.setItem('location', this.props.location.pathname)
-  // }
 }
 
 const mapStateToProps = (state) => {
@@ -96,4 +93,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, { createConversation, getConversations })(Conversation)
+export default withAuth(connect(mapStateToProps, { createConversation, getConversations })(Conversation))

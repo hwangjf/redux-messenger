@@ -16,6 +16,7 @@ class UsersAdapter extends ApiAdapter {
   }
 
   login = (userInfo) => {
+    debugger
     return this.post('/login', {
       user: userInfo
     })
