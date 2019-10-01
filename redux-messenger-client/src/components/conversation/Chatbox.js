@@ -81,7 +81,7 @@ class Chatbox extends Component {
             this.props.currentConvo && this.props.users.filter(user => {
               return !this.props.currentConvo.users.map(u=>u.id).includes(user.id)
             }).map(user => {
-              return <div onClick={()=>console.log('invite user funcitonality')}>{user.username}</div>
+              return <div key={user.id} onClick={()=>console.log('invite user funcitonality')}>{user.username}</div>
             })
           }
         </div>

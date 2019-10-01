@@ -81,6 +81,10 @@ class Conversation extends Component {
       </div>
     )
   }
+
+  // componentWillUnmount() {
+  //   localStorage.setItem('location', this.props.location.pathname)
+  // }
 }
 
 const mapStateToProps = (state) => {

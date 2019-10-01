@@ -23,11 +23,15 @@ class App extends Component {
   }
 
   componentDidMount() {
+    // console.log('LOCATION', localStorage.getItem('location'))
+    // TODO: save location in local storage if there is one push to that location else to conversations
+
     if (Adapter.hasToken()) {
       this.props.autoLogin()
         .then(data => {
           this.props.getUsers()
-          this.props.history.push('/conversations')
+          // this.props.history.push(`/profile/${this.props.user.username}`)
+          this.props.history.push(`/conversations`)
         })
       this.setState({login: false})
     } else {
@@ -58,7 +62,7 @@ class App extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <>
         <Navbar
           handleClickLogin={this.handleClickLogin}
           loggedIn={this.props.loggedIn}
@@ -85,13 +89,19 @@ class App extends Component {
           )}
         />
         <Route
-          path="/profile"
-          render={props => (
-            <Profile
-              editProfile={this.state.editProfile}
-              handleClickEditProfile={this.handleClickEditProfile}
-            />
-          )}
+          path="/profile/:username"
+          render={routerProps => {
+            const userId = this.props.users.length > 0 ? this.props.users.find(user => user.username === routerProps.match.params.username).id : null
+            return (
+              <Profile
+                editProfile={this.state.editProfile}
+                handleClickEditProfile={this.handleClickEditProfile}
+                userId={userId}
+                user={this.props.user}
+                // friend={this.props.user && this.props.user.friends.map(u => u.id).includes(user.id)}
+                {...routerProps}
+              />
+            )}}
         />
         <Route
           path="/messages"
@@ -101,7 +111,7 @@ class App extends Component {
           path="/conversations"
           component={Conversation}
         />
-      </React.Fragment>
+      </>
     );
   }
 }
@@ -109,7 +119,8 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     user: state.user,
-    loggedIn: !!state.user
+    loggedIn: !!state.user,
+    users: state.users
   }
 }
 

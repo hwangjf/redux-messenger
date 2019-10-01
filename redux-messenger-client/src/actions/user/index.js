@@ -1,6 +1,7 @@
 import { Adapter, UsersAdapter } from '../../adapters';
 
 import {
+  newFriend,
   loginSuccess,
   loginRequest,
   loginFailure,
@@ -9,6 +10,14 @@ import {
   signupFailure,
   logout
 } from './userActions'
+
+const addFriend = (friendId) => dispatch => {
+  UsersAdapter.addFriend(friendId)
+    .then(data => {
+
+      dispatch(newFriend(data))
+    })
+}
 
 const login = (userInfo) => dispatch => {
   dispatch(loginRequest)
@@ -61,5 +70,6 @@ export {
   login,
   autoLogin,
   signup,
-  logout
+  logout,
+  addFriend
 }

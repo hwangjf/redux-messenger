@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { login, autoLogin } from '../../actions/user'
+import { autoLogin } from '../../actions/user'
 import { Adapter } from '../../adapters';
 import { Redirect } from 'react-router-dom'
 import { withRouter } from 'react-router'
@@ -31,8 +31,7 @@ const withAuth = (WrappedComponent) => {
   const mapStateToProps = (state) => {
     console.log(state)
     return {
-      isLoggedIn: state.userReducer.isLoggedIn,
-      isLoading: state.userReducer.authenticatingUser
+      isLoggedIn: !!state.user
     }
   }
 

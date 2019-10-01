@@ -41,6 +41,11 @@ class UsersAdapter extends ApiAdapter {
     this.addAuthHeaders()
     return this.get('/users')
   }
+
+  addFriend = (userId) => {
+    this.addAuthHeaders()
+    return this.post('/add_friend', {friend_id: userId})
+  }
 }
 
 // users adapter that connects to user related backend routes

@@ -4,6 +4,8 @@ import {
 
 import { Adapter } from '../../adapters';
 
+const newFriend = (newFriend) => ({ type: userConstants.ADD_FRIEND, payload: newFriend })
+
 // LOGIN action creators
 // login success
 const loginSuccess = (userInfo) => ({
@@ -49,6 +51,7 @@ const logout = () => {
 }
 
 export {
+  newFriend,
   loginSuccess,
   loginRequest,
   loginFailure,
