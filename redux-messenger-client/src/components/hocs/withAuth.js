@@ -28,10 +28,10 @@ const withAuth = (WrappedComponent) => {
       }
     }
 
-    componentWillUnmount() {
-      console.log('hi')
-      localStorage.setItem('is','done')
-    }
+    // componentWillUnmount() {
+    //   console.log('hi')
+    //   localStorage.setItem('is','done')
+    // }
   }
 
   const mapStateToProps = (state) => {

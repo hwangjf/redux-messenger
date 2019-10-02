@@ -18,8 +18,7 @@ import '../sass/main.scss'
 class App extends Component {
   state = {
     login: true,
-    showPassword: false,
-    editProfile: false
+    showPassword: false
   }
 
   componentDidMount() {
@@ -31,7 +30,7 @@ class App extends Component {
         .then(data => {
           this.props.getUsers()
           // this.props.history.push(`/profile/${this.props.user.username}`)
-          this.props.history.push(`/conversations`)
+          this.props.history.push('/conversations')
         })
       this.setState({login: false})
     } else {
@@ -54,10 +53,6 @@ class App extends Component {
 
   handleClickPassword = () => {
     this.setState({ showPassword : !this.state.showPassword })
-  }
-
-  handleClickEditProfile = () => {
-    this.setState({ editProfile : !this.state.editProfile })
   }
 
   render() {
