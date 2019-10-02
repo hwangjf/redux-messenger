@@ -6,7 +6,6 @@ import { Redirect } from 'react-router-dom'
 import { withRouter } from 'react-router'
 import ClipLoader from 'react-spinners/ClipLoader';
 
-// console.log(Adapter)
 const withAuth = (WrappedComponent) => {
   class AuthorizedComponent extends Component {
     componentDidMount() {
