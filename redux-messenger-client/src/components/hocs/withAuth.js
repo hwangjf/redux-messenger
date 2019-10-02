@@ -1,24 +1,25 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { autoLogin } from '../../actions/user'
-import { Adapter } from '../../adapters';
+import Adapter from '../../adapters/Adapter';
 import { Redirect } from 'react-router-dom'
 import { withRouter } from 'react-router'
 import ClipLoader from 'react-spinners/ClipLoader';
 
+// console.log(Adapter)
 const withAuth = (WrappedComponent) => {
   class AuthorizedComponent extends Component {
     componentDidMount() {
-      if (Adapter.isLoggedIn() && !this.props.isLoggedIn) {
+      if (Adapter.hasToken() && !this.props.isLoggedIn) {
         // this.props.autoLogin()
       }
     }
 
     render() {
-      if (Adapter.isLoggedIn() && this.props.isLoggedIn) {
+      if (Adapter.hasToken() && this.props.isLoggedIn) {
         // has token and successfully logged in
         return <WrappedComponent {...this.props} />
-      } else if (Adapter.isLoggedIn() && !this.props.isLoggedIn) {
+      } else if (Adapter.hasToken() && !this.props.isLoggedIn) {
         // has token and attempting log in
         return <ClipLoader />
       } else {

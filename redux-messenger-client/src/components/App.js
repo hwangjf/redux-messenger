@@ -24,7 +24,7 @@ class App extends Component {
 
   componentDidMount() {
     // console.log('LOCATION', localStorage.getItem('location'))
-    // TODO: save location in local storage if there is one push to that location else to conversations
+    // TODO: save window location in local storage if there is one push to that location else to conversations
 
     if (Adapter.hasToken()) {
       this.props.autoLogin()
@@ -94,10 +94,9 @@ class App extends Component {
             const userId = this.props.users.length > 0 ? this.props.users.find(user => user.username === routerProps.match.params.username).id : null
             return (
               <Profile
-                editProfile={this.state.editProfile}
-                handleClickEditProfile={this.handleClickEditProfile}
                 userId={userId}
                 user={this.props.user}
+                users={this.props.users}
                 // friend={this.props.user && this.props.user.friends.map(u => u.id).includes(user.id)}
                 {...routerProps}
               />

@@ -3,11 +3,20 @@ import withAuth from '../hocs/withAuth'
 import { connect } from 'react-redux'
 import { addFriend } from '../../actions/user'
 
-// import { signup } from '../../actions/user'
 class Profile extends React.Component {
+
+  state = {
+    editProfile: false
+  }
+
+  handleClickEditProfile = () => {
+    this.setState({editProfile: !this.state.editProfile})
+  }
 
   render() {
     console.log(this.props)
+    console.log(this.state)
+    const user = this.props.users.find(user => user.id === this.props.userId)
     return (
       <>
         <div className="profile-background">
@@ -39,38 +48,39 @@ class Profile extends React.Component {
             <img className="profile__camera" src="images/camera.png" alt="camera" />
           </div>
           </div>
-          {this.props.editProfile 
-            ? <div className="profile__edit" onClick={this.props.handleClickEditProfile}>done</div> 
-            : <div className="profile__edit" onClick={this.props.handleClickEditProfile}>edit</div>
+          
+          {this.state.editProfile 
+            ? <div className="profile__edit" onClick={this.handleClickEditProfile}>done</div> 
+            : <div className="profile__edit" onClick={this.handleClickEditProfile}>edit</div>
           }
           <div className="profile__info">
             <div className="profile__header">name</div>
-            {this.props.editProfile 
+            {this.state.editProfile 
               ? <input className="profile__input"></input> 
               : <div className="profile__content">
-                  {this.props.user 
-                    ? this.props.user.username 
+                  {user 
+                    ? user.username 
                     : 'name'}
                 </div>
             }
           </div>
           <div className="profile__info">
             <div className="profile__header">birthday</div>
-            {this.props.editProfile 
+            {this.state.editProfile 
               ? <input className="profile__input"></input> 
               : <div className="profile__content">info</div>
             }
           </div>
           <div className="profile__info">
             <div className="profile__header">gender</div>
-            {this.props.editProfile 
+            {this.state.editProfile 
               ? <input className="profile__input"></input> 
               : <div className="profile__content">info</div>
             }
           </div>
           <div className="profile__info">
             <div className="profile__header">password</div>
-            {this.props.editProfile 
+            {this.state.editProfile 
               ? <input className="profile__input"></input> 
               : <div className="profile__content">info</div>
             }

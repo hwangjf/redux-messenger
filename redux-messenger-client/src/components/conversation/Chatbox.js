@@ -39,7 +39,6 @@ class Chatbox extends Component {
             channel={{ channel: 'MessageChannel', conversation_id: this.props.currentConvo.id}}
             onReceived={(arg) => {
               console.log('msg received', arg)
-
               this.props.messageReceived(arg)
               // this.props.createMessage(arg)
             }}
@@ -74,6 +73,7 @@ class Chatbox extends Component {
               return <div key={`user-${user.id}`}>{user.username}</div>
             })
           }
+          {/* {console.log(this.props.currentConvo && this.props.currentConvo.users)} */}
         </div>
         <div>
           Users NOT in chatroom - click to invite
