@@ -16,6 +16,7 @@ class UsersAdapter extends ApiAdapter {
   }
 
   login = (userInfo) => {
+    debugger
     return this.post('/login', {
       user: userInfo
     })
@@ -40,6 +41,11 @@ class UsersAdapter extends ApiAdapter {
   getUsers = () => {
     this.addAuthHeaders()
     return this.get('/users')
+  }
+
+  addFriend = (userId) => {
+    this.addAuthHeaders()
+    return this.post('/add_friend', {friend_id: userId})
   }
 }
 

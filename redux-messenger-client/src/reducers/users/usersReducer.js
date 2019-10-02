@@ -1,56 +1,56 @@
-import {
-  userConstants
-} from '../../types'
+// import {
+//   userConstants
+// } from '../../types'
 
-const initialState = {
-  user: null,
-  isLoggedIn: false,
-  authenticatingUser: false, // loading  # => LOADING SPINNER
-  failedLogin: false,
-  error: null,
-  otherUsers: []
-}
+// const initialState = {
+//   user: null,
+//   isLoggedIn: false,
+//   authenticatingUser: false, // loading  # => LOADING SPINNER
+//   failedLogin: false,
+//   error: null,
+//   otherUsers: []
+// }
 
-// const user = (state=null, action) => {
-//   switch(action.type) {
+// // const user = (state=null, action) => {
+// //   switch(action.type) {
+// //     case userConstants.LOGIN_SUCCESS:
+// //       return action.user
+// //     case userConstants.LOGOUT:
+// //       return null
+// //     default:
+// //       return state
+// //   }
+// // }
+
+// const usersReducer = (state = initialState, action) => {
+//   console.log(action)
+//   debugger
+//   switch (action.type) {
 //     case userConstants.LOGIN_SUCCESS:
-//       return action.user
+//       return {
+//         ...state,
+//         user: action.user,
+//         loggedIn: true,
+//         otherUsers: action.otherUsers,
+//         authenticatingUser: false
+//       }
+//     case userConstants.LOGIN_REQUEST:
+//       return {
+//         ...state,
+//         authenticatingUser: true
+//       }
+//     case userConstants.LOGIN_FAILURE:
+//       return {
+//         ...state,
+//         error: action.errors,
+//         authenticatingUser: false
+//       }
 //     case userConstants.LOGOUT:
-//       return null
+//       return initialState
 //     default:
 //       return state
 //   }
 // }
 
-const usersReducer = (state = initialState, action) => {
-  console.log(action)
-  debugger
-  switch (action.type) {
-    case userConstants.LOGIN_SUCCESS:
-      return {
-        ...state,
-        user: action.user,
-        loggedIn: true,
-        otherUsers: action.otherUsers,
-        authenticatingUser: false
-      }
-    case userConstants.LOGIN_REQUEST:
-      return {
-        ...state,
-        authenticatingUser: true
-      }
-    case userConstants.LOGIN_FAILURE:
-      return {
-        ...state,
-        error: action.errors,
-        authenticatingUser: false
-      }
-    case userConstants.LOGOUT:
-      return initialState
-    default:
-      return state
-  }
-}
-
-export default userReducer
+// export default userReducer
 

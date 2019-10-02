@@ -1,42 +1,46 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { login, autoLogin } from '../../actions/user'
-import { Adapter } from '../../adapters';
+import { autoLogin } from '../../actions/user'
+import Adapter from '../../adapters/Adapter';
 import { Redirect } from 'react-router-dom'
 import { withRouter } from 'react-router'
+import ClipLoader from 'react-spinners/ClipLoader';
 
+// console.log(Adapter)
 const withAuth = (WrappedComponent) => {
   class AuthorizedComponent extends Component {
     componentDidMount() {
-      if (Adapter.isLoggedIn() && !this.props.isLoggedIn) {
-        this.props.autoLogin()
+      if (Adapter.hasToken() && !this.props.isLoggedIn) {
+        // this.props.autoLogin()
       }
     }
 
     render() {
-      if (Adapter.isLoggedIn() && this.props.isLoggedIn) {
+      if (Adapter.hasToken() && this.props.isLoggedIn) {
         // has token and successfully logged in
-        return <WrappedComponent />
-      } else if (Adapter.isLoggedIn() && (this.props.isLoading || !this.props.isLoggedIn)) {
+        return <WrappedComponent {...this.props} />
+      } else if (Adapter.hasToken() && !this.props.isLoggedIn) {
         // has token and attempting log in
-        // TODO:replace with loading spinner
-        return <div>Loading</div>
+        return <ClipLoader />
       } else {
         // not logged in can redirect or do something else
         return <Redirect to="/" />
       }
     }
+
+    // componentWillUnmount() {
+    //   console.log('hi')
+    //   localStorage.setItem('is','done')
+    // }
   }
 
   const mapStateToProps = (state) => {
-    console.log(state)
     return {
-      isLoggedIn: state.userReducer.isLoggedIn,
-      isLoading: state.userReducer.authenticatingUser
+      isLoggedIn: !!state.user
     }
   }
 
-  return withRouter(connect(mapStateToProps, { autoLogin })(AuthorizedComponent))
+  return connect(mapStateToProps, { autoLogin })(AuthorizedComponent)
 } 
 
 export default withAuth;

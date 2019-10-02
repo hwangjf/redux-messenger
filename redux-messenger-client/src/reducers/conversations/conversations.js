@@ -17,7 +17,13 @@ export default (state=initialState, action) => {
     case messageConstants.RECEIVED:
       return {
         ...state,
-        all: state.all.map(convo => convo.id === action.payload.conversation_id ? { ...convo, messages: [...convo.messages, action.payload] } : convo)
+        all: state.all.map(convo => convo.id === action.payload.conversation_id ? (
+          { 
+            ...convo, 
+            messages: [...convo.messages, action.payload], 
+            users: convo.users.map(u => u.id).includes(action.payload.user.id) ? convo.users : [...convo.users, action.payload.user]
+          }
+         ) : convo)
       }
     default:
       return state
