@@ -22,9 +22,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // console.log('LOCATION', localStorage.getItem('location'))
-    // TODO: save window location in local storage if there is one push to that location else to conversations
-
     if (Adapter.hasToken()) {
       this.props.autoLogin()
         .then(data => {
@@ -41,16 +38,7 @@ class App extends Component {
   handleClickLogin = () => {
     this.setState({ login: true })
   }
-
-  handleClickClose = (event) => {
-    let form = document.querySelector(".login__modal")
-    let close = document.querySelector(".close")
-
-    if (event.target === form || event.target === close || event === "close") {
-      this.setState ({ login: false })
-    }
-  }
-
+  
   handleClickPassword = () => {
     this.setState({ showPassword : !this.state.showPassword })
   }
@@ -111,6 +99,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state)
   return {
     user: state.user,
     loggedIn: !!state.user,

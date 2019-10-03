@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { autoLogin } from '../../actions/user'
 import Adapter from '../../adapters/Adapter';
 import { Redirect } from 'react-router-dom'
-import { withRouter } from 'react-router'
 import ClipLoader from 'react-spinners/ClipLoader';
 
 const withAuth = (WrappedComponent) => {
@@ -26,11 +25,6 @@ const withAuth = (WrappedComponent) => {
         return <Redirect to="/" />
       }
     }
-
-    // componentWillUnmount() {
-    //   console.log('hi')
-    //   localStorage.setItem('is','done')
-    // }
   }
 
   const mapStateToProps = (state) => {

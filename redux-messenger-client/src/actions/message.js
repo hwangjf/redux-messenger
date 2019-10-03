@@ -11,7 +11,7 @@ export const createMessage = (text, conversation_id) => dispatch => {
     conversation_id
   })
     .then(data => {
-      // console.log(data)
+      console.log(data)
       // dispatch({
       //   type: messageConstants.CREATE,
       //   payload: data
