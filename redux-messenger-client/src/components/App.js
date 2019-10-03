@@ -18,20 +18,16 @@ import '../sass/main.scss'
 class App extends Component {
   state = {
     login: true,
-    showPassword: false,
-    editProfile: false
+    showPassword: false
   }
 
   componentDidMount() {
-    // console.log('LOCATION', localStorage.getItem('location'))
-    // TODO: save window location in local storage if there is one push to that location else to conversations
-
     if (Adapter.hasToken()) {
       this.props.autoLogin()
         .then(data => {
           this.props.getUsers()
           // this.props.history.push(`/profile/${this.props.user.username}`)
-          this.props.history.push(`/conversations`)
+          this.props.history.push('/conversations')
         })
       this.setState({login: false})
     } else {
@@ -42,22 +38,9 @@ class App extends Component {
   handleClickLogin = () => {
     this.setState({ login: true })
   }
-
-  handleClickClose = (event) => {
-    let form = document.querySelector(".login__modal")
-    let close = document.querySelector(".close")
-
-    if (event.target === form || event.target === close || event === "close") {
-      this.setState ({ login: false })
-    }
-  }
-
+  
   handleClickPassword = () => {
     this.setState({ showPassword : !this.state.showPassword })
-  }
-
-  handleClickEditProfile = () => {
-    this.setState({ editProfile : !this.state.editProfile })
   }
 
   render() {
@@ -116,6 +99,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state)
   return {
     user: state.user,
     loggedIn: !!state.user,

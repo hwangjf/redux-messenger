@@ -3,17 +3,26 @@ import { connect } from 'react-redux'
 import uuid from 'uuid'
 import Message from '../messages/Message';
 import { createMessage, messageReceived } from '../../actions/message'
-// import { getConversation } from '../../actions/conversation'
 import { ActionCableConsumer } from 'react-actioncable-provider'
 
 class Chatbox extends Component {
   state = {
-    text: ''
+    text: '',
+    mountConsumer: true
   }
 
-  // componentDidMount() {
-  //   this.props.currentConvo && this.props.getConversation(this.props.currentConvo.id)
-  // }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.currentConvo && (prevProps.currentConvo.id !== this.props.currentConvo.id) ) {
+      // unmount and remount consumer 
+      this.setState({mountConsumer: false}, () =>this.setState({mountConsumer: true}))
+    }
+  }
+
+  static getDerivedStateFromProps(props) {
+    return {
+      convoId: props.currentConvo && props.currentConvo.id
+    }
+  }
 
   handleChange = e => this.setState({[e.target.name]: e.target.value})
 
@@ -24,26 +33,36 @@ class Chatbox extends Component {
     this.setState({text: ''})
   }
 
+  renderConsumer = (id) => {
+    // MUST USER MOUNT AND UNMOUNT LOGIC IN ORDER TO CONNECT TO THE NEW CHANNEL
+    return <ActionCableConsumer
+      // frontend channel connects to the NAME OF THE CHANNEL CLASS
+      // can add params through ex
+      // {{channel: 'classname', params: paramsValue(example of user ) }}
+      channel={{ channel: 'MessageChannel', conversation_id: id }}
+      onConnected={() => console.log('CONNNECTED', id)}
+      onReceived={(arg) => {
+        console.log('msg received', arg)
+        
+        this.props.messageReceived(arg)
+      }}
+      onDisconnected={() => console.log('DISCONNECT')}
+    />
+  }
+
+  
+
   render() {
-    console.log(this.props)
     return (
       <div>
         Chatbox
-        
+
         {
-          this.props.currentConvo && (
-          <ActionCableConsumer
-            // frontend channel connects to the NAME OF THE CHANNEL CLASS
-            // can add params through ex
-            // {{channel: 'classname', params: paramsValue(example of user ) }}
-            channel={{ channel: 'MessageChannel', conversation_id: this.props.currentConvo.id}}
-            onReceived={(arg) => {
-              console.log('msg received', arg)
-              this.props.messageReceived(arg)
-              // this.props.createMessage(arg)
-            }}
-          />)
+          this.props.currentConvo && !!this.props.currentConvo.id && this.state.mountConsumer 
+            ? this.renderConsumer(this.props.currentConvo.id)
+            : null
         }
+
         <h1>
           {
             this.props.currentConvo && this.props.currentConvo.title
@@ -73,7 +92,6 @@ class Chatbox extends Component {
               return <div key={`user-${user.id}`}>{user.username}</div>
             })
           }
-          {/* {console.log(this.props.currentConvo && this.props.currentConvo.users)} */}
         </div>
         <div>
           Users NOT in chatroom - click to invite
@@ -92,8 +110,8 @@ class Chatbox extends Component {
 const mapStateToProps = state => {
   console.log(state)
   return {
-    currentConvo: state.conversations.current && state.conversations.all.find(convo => convo.id === state.conversations.current),
-    messages: state.conversations.current && state.conversations.all.find(convo => convo.id === state.conversations.current).messages,
+    currentConvo: state.conversations.currentId && state.conversations.all.find(convo => convo.id === state.conversations.currentId),
+    messages: state.conversations.currentId && state.conversations.all.find(convo => convo.id === state.conversations.currentId).messages,
     users: state.users
   }
 }

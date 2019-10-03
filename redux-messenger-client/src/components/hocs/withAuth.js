@@ -3,10 +3,8 @@ import { connect } from 'react-redux'
 import { autoLogin } from '../../actions/user'
 import Adapter from '../../adapters/Adapter';
 import { Redirect } from 'react-router-dom'
-import { withRouter } from 'react-router'
 import ClipLoader from 'react-spinners/ClipLoader';
 
-// console.log(Adapter)
 const withAuth = (WrappedComponent) => {
   class AuthorizedComponent extends Component {
     componentDidMount() {
@@ -26,11 +24,6 @@ const withAuth = (WrappedComponent) => {
         // not logged in can redirect or do something else
         return <Redirect to="/" />
       }
-    }
-
-    componentWillUnmount() {
-      console.log('hi')
-      localStorage.setItem('is','done')
     }
   }
 
